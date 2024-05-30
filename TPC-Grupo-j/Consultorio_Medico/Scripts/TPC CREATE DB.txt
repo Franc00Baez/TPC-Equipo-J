@@ -1,0 +1,72 @@
+Create DataBase CONSULTORIO
+Go
+Use CONSULTORIO
+Go
+Create Table ESPECIALIDADES(
+	id int not null identity (1,1) Primary Key,
+	nombre varchar(50) not null,
+)
+Create Table ROLES(
+	id int not null identity (1,1) Primary Key,
+	rol varchar(50) not null
+)
+Create Table MEDICOS(
+	id int not null identity (1,1) Primary Key,
+	nombre varchar(50) not null,
+	apellido varchar(50) not null,
+	email Varchar(200) not null UNIQUE,
+)
+Create Table ESPECIALIDADESXMEDICO(
+	id int not null identity (1,1),
+	idmedico int not null,
+	idespecialidad int not null,
+	Foreign Key (idmedico) References MEDICOS(id),
+	Foreign Key (idespecialidad) References ESPECIALIDADES(id),
+	Primary Key (id, idmedico, idespecialidad)
+)
+Create Table DIAS(
+	id int not null identity(1,1) Primary Key,
+	nombre varchar(10)
+)
+Create Table TURNOSTRABAJO(
+	idmedico int not null,
+	iddia int not null,
+	hora_inicio TIME not null,
+	hora_fin TIME not null,
+	Foreign Key (idmedico) References MEDICOS(id),
+	Foreign Key (iddia) References DIAS(id),
+	Primary Key (idmedico, iddia, hora_inicio, hora_fin)	
+)
+Create Table PACIENTES(
+	id int not null identity (1,1) Primary Key,
+	nombre varchar(50) not null,
+	apellido varchar(50) not null,
+	email varchar(200) not null unique,
+	telefono varchar(20) null
+)
+Create Table ESTADOS(
+	id int not null identity (1,1) Primary Key,
+	tipo varchar(50) not null
+)
+Create Table TURNOS(
+	id int not null identity (1,1) Primary Key,
+	idpaciente int not null,
+	idmedico int not null,
+	fecha Date not null,
+	hora Time not null,
+	idestado int not null,
+	observacion Text,
+	Foreign Key (idpaciente) References PACIENTES(id),
+	Foreign Key (idmedico) References MEDICOS(id),
+	Foreign Key (idestado) References ESTADOS(id),
+	Unique (idmedico, fecha, hora),
+	Unique (idpaciente, fecha, hora)
+)
+Create Table USUARIOS(
+	id int not null identity (1,1) Primary Key,
+	email Varchar(255) not null,
+	pass Varchar(255) not null,
+	idrol int not null,
+	img varchar(2000) not null,
+	Foreign Key (idrol) References ROLES(id)
+)
