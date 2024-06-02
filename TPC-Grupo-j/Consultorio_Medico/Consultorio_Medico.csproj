@@ -106,6 +106,20 @@
     <Folder Include="Models\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\app.helpers\helpers.csproj">
+      <Project>{018616eb-332f-494b-ba18-130165557323}</Project>
+      <Name>helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dominio\dominio.csproj">
+      <Project>{b9e23956-79f8-496e-8320-5c4b059caf93}</Project>
+      <Name>dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\negocio\negocio.csproj">
+      <Project>{a5efe9c2-f5b7-440f-bb5e-ee6b64267343}</Project>
+      <Name>negocio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

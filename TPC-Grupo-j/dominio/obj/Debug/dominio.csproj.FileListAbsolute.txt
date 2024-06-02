@@ -1,0 +1,9 @@
+C:\Users\Franco\FACULTAD\prog3\TPC-Equipo-J\TPC-Grupo-j\dominio\bin\Debug\dominio.dll
+C:\Users\Franco\FACULTAD\prog3\TPC-Equipo-J\TPC-Grupo-j\dominio\bin\Debug\dominio.pdb
+C:\Users\Franco\FACULTAD\prog3\TPC-Equipo-J\TPC-Grupo-j\dominio\bin\Debug\app.helpers.dll
+C:\Users\Franco\FACULTAD\prog3\TPC-Equipo-J\TPC-Grupo-j\dominio\bin\Debug\app.helpers.pdb
+C:\Users\Franco\FACULTAD\prog3\TPC-Equipo-J\TPC-Grupo-j\dominio\obj\Debug\dominio.csproj.AssemblyReference.cache
+C:\Users\Franco\FACULTAD\prog3\TPC-Equipo-J\TPC-Grupo-j\dominio\obj\Debug\dominio.csproj.CoreCompileInputs.cache
+C:\Users\Franco\FACULTAD\prog3\TPC-Equipo-J\TPC-Grupo-j\dominio\obj\Debug\dominio.csproj.CopyComplete
+C:\Users\Franco\FACULTAD\prog3\TPC-Equipo-J\TPC-Grupo-j\dominio\obj\Debug\dominio.dll
+C:\Users\Franco\FACULTAD\prog3\TPC-Equipo-J\TPC-Grupo-j\dominio\obj\Debug\dominio.pdb

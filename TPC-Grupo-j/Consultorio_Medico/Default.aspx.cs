@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using negocio;
+using helpers;
+using dominio;
 
 namespace Consultorio_Medico
 {
@@ -11,7 +14,14 @@ namespace Consultorio_Medico
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+        }
 
+        protected void btnIngresar_Click(object sender, EventArgs e)
+        {
+            negocio.Login log = new negocio.Login();
+            int id = log.ValidarUsuario(txtEmail.Text, txtPass.Text);
+            
         }
     }
 }

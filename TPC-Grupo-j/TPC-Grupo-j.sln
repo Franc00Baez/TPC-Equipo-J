@@ -5,6 +5,19 @@ VisualStudioVersion = 16.0.34601.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consultorio_Medico", "Consultorio_Medico\Consultorio_Medico.csproj", "{71C84ABE-2F3B-4E0E-8429-39D3A0CFF01A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Querys", "Querys", "{8E33A3A0-9DCF-4A4B-AAB1-729E489944F5}"
+	ProjectSection(SolutionItems) = preProject
+		AddValues.sql = AddValues.sql
+		CreacionDB.sql = CreacionDB.sql
+		StoredProcedure.sql = StoredProcedure.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dominio", "dominio\dominio.csproj", "{B9E23956-79F8-496E-8320-5C4B059CAF93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "negocio", "negocio\negocio.csproj", "{A5EFE9C2-F5B7-440F-BB5E-EE6B64267343}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helpers", "app.helpers\helpers.csproj", "{018616EB-332F-494B-BA18-130165557323}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +28,18 @@ Global
 		{71C84ABE-2F3B-4E0E-8429-39D3A0CFF01A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71C84ABE-2F3B-4E0E-8429-39D3A0CFF01A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71C84ABE-2F3B-4E0E-8429-39D3A0CFF01A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9E23956-79F8-496E-8320-5C4B059CAF93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E23956-79F8-496E-8320-5C4B059CAF93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E23956-79F8-496E-8320-5C4B059CAF93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E23956-79F8-496E-8320-5C4B059CAF93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5EFE9C2-F5B7-440F-BB5E-EE6B64267343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5EFE9C2-F5B7-440F-BB5E-EE6B64267343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5EFE9C2-F5B7-440F-BB5E-EE6B64267343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5EFE9C2-F5B7-440F-BB5E-EE6B64267343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{018616EB-332F-494B-BA18-130165557323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{018616EB-332F-494B-BA18-130165557323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{018616EB-332F-494B-BA18-130165557323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{018616EB-332F-494B-BA18-130165557323}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
