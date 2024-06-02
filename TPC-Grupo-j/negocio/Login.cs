@@ -53,7 +53,7 @@ namespace negocio
 
                 datos.setearParametro("@email", nuevo.email);
                 datos.setearParametro("@password_hash", passwordhash);
-                datos.setearParametro("@img_url", nuevo.img_url);
+                datos.setearParametro("@img_url", string.IsNullOrEmpty(usuario.img_url) ? (object)DBNull.Value : usuario.img_url);
                 datos.setearParametro("@id_rol", (int)nuevo.rol_type);
                 datos.setearParametro("@fecha_creacion", DateTime.Now);
 

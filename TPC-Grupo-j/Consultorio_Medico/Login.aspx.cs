@@ -14,15 +14,21 @@ namespace Consultorio_Medico
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if(!IsPostBack)
+            {
+                if(Session["Registrado"] != null)
+                {
+                    lblID.Text = Session["Registrado"].ToString();
+                }
+            }
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
             negocio.Login log = new negocio.Login();
             int id = log.ValidarUsuario(txtEmail.Text, txtPass.Text);
-            //lblID.Text = id.ToString();
-            Response.Redirect("Default.aspx");
+            lblID.Text = id.ToString();
+            //Response.Redirect("Default.aspx");
         }
     }
 }

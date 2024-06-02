@@ -59,6 +59,7 @@
                     <label class="form-check-label" for="exampleCheck1">Mantener la sesión</label>
                 </div>
                 <asp:Button Text="Ingresar" CssClass="btn btn-primary" ID="btnIngresar"  runat="server" OnClick="btnIngresar_Click" />
+                <a href ="FormRegistro.aspx" class="btn btn-outline-light">Registrate</a>
                 <asp:Label Text="" runat="server" id="lblID" />
             </div>
         </div>
