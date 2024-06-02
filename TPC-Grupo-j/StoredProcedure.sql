@@ -52,3 +52,21 @@ AS
 BEGIN
     SELECT id, password_hash FROM USUARIOS WHERE email = @Email
 END
+
+CREATE PROCEDURE insertarNuevo
+    @Email VARCHAR(70),
+    @Password_Hash VARCHAR(200),
+    @Img_Url VARCHAR(200),
+	@id_rol int,
+    @Fecha_Creacion DATETIME = NULL
+AS
+BEGIN
+    IF @Fecha_Creacion IS NULL
+    BEGIN
+        SET @Fecha_Creacion = GETDATE()
+    END
+
+    INSERT INTO USUARIOS (email, password_hash, img_url, id_rol, fecha_creacion)
+    OUTPUT INSERTED.id
+    VALUES (@Email, @Password_Hash, @Img_Url,@id_rol, @Fecha_Creacion)
+END

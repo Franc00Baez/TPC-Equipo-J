@@ -27,6 +27,7 @@ namespace Consultorio_Medico
         {
             Usuario usuario = new Usuario();    
             negocio.Login log = new negocio.Login();
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();       
             try
             {
 

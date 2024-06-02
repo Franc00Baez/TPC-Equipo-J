@@ -31,3 +31,14 @@ C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\negocio\obj\Debu
 C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\negocio\obj\Debug\negocio.csproj.CopyComplete
 C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\negocio\obj\Debug\negocio.dll
 C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\negocio\obj\Debug\negocio.pdb
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta (2)\TPC-Equipo-J\TPC-Grupo-j\negocio\bin\Debug\negocio.dll
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta (2)\TPC-Equipo-J\TPC-Grupo-j\negocio\bin\Debug\negocio.pdb
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta (2)\TPC-Equipo-J\TPC-Grupo-j\negocio\bin\Debug\app.helpers.dll
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta (2)\TPC-Equipo-J\TPC-Grupo-j\negocio\bin\Debug\dominio.dll
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta (2)\TPC-Equipo-J\TPC-Grupo-j\negocio\bin\Debug\app.helpers.pdb
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta (2)\TPC-Equipo-J\TPC-Grupo-j\negocio\bin\Debug\dominio.pdb
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta (2)\TPC-Equipo-J\TPC-Grupo-j\negocio\obj\Debug\negocio.csproj.AssemblyReference.cache
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta (2)\TPC-Equipo-J\TPC-Grupo-j\negocio\obj\Debug\negocio.csproj.CoreCompileInputs.cache
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta (2)\TPC-Equipo-J\TPC-Grupo-j\negocio\obj\Debug\negocio.csproj.CopyComplete
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta (2)\TPC-Equipo-J\TPC-Grupo-j\negocio\obj\Debug\negocio.dll
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta (2)\TPC-Equipo-J\TPC-Grupo-j\negocio\obj\Debug\negocio.pdb

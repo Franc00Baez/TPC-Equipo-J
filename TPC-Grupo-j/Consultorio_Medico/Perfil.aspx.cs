@@ -14,13 +14,13 @@ namespace Consultorio_Medico
         {
             Usuario user = (Usuario)Session["usuario"];
 
-            if (Session["usuario"] == null)
+            if (Session["usuario"] != null)
             {
-                Response.Redirect("Login.aspx");
+                txtbEmail.Text = user.email;
             }
             else
             {
-                txtbEmail.Text = user.email; 
+                Response.Redirect("Login.aspx");
             }
         }
     }
