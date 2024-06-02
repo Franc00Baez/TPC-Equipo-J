@@ -20,3 +20,14 @@ C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta\TPC-Equipo-J\TPC-Grupo-j\app.he
 C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta\TPC-Equipo-J\TPC-Grupo-j\app.helpers\obj\Debug\helpers.csproj.CopyComplete
 C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta\TPC-Equipo-J\TPC-Grupo-j\app.helpers\obj\Debug\app.helpers.dll
 C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta\TPC-Equipo-J\TPC-Grupo-j\app.helpers\obj\Debug\app.helpers.pdb
+C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\app.helpers\bin\Debug\app.helpers.dll
+C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\app.helpers\bin\Debug\app.helpers.pdb
+C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\app.helpers\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\app.helpers\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\app.helpers\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.xml
+C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\app.helpers\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml
+C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\app.helpers\obj\Debug\helpers.csproj.AssemblyReference.cache
+C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\app.helpers\obj\Debug\helpers.csproj.CoreCompileInputs.cache
+C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\app.helpers\obj\Debug\helpers.csproj.CopyComplete
+C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\app.helpers\obj\Debug\app.helpers.dll
+C:\Users\Lucio\OneDrive\Escritorio\TPC\TPC-Equipo-J\TPC-Grupo-j\app.helpers\obj\Debug\app.helpers.pdb

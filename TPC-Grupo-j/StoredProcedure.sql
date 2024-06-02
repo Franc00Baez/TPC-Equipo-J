@@ -45,3 +45,10 @@ begin
 	else
 		select 0 as id
 end
+
+CREATE PROCEDURE sp_ObtenerUsuarioPorEmail
+    @Email VARCHAR(70)
+AS
+BEGIN
+    SELECT id, password_hash FROM USUARIOS WHERE email = @Email
+END

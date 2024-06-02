@@ -11,7 +11,7 @@ namespace Consultorio_Medico
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

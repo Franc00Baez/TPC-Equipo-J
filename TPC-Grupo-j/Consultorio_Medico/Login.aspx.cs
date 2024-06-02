@@ -14,9 +14,9 @@ namespace Consultorio_Medico
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
-                if(Session["Registrado"] != null)
+                if (Session["Registrado"] != null)
                 {
                     lblID.Text = Session["Registrado"].ToString();
                 }
@@ -25,10 +25,25 @@ namespace Consultorio_Medico
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
+            Usuario usuario = new Usuario();    
             negocio.Login log = new negocio.Login();
-            int id = log.ValidarUsuario(txtEmail.Text, txtPass.Text);
-            lblID.Text = id.ToString();
-            //Response.Redirect("Default.aspx");
+            try
+            {
+
+                int id = log.ValidarUsuario(txtEmail.Text, txtPass.Text);
+                lblID.Text = id.ToString();
+                if (!(id <= 0))
+                {
+                    usuario.email = txtEmail.Text;
+                    Session.Add("usuario",usuario);
+                    Response.Redirect("Default.aspx");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+            }
         }
     }
 }

@@ -13,23 +13,26 @@ namespace negocio
         private Usuario usuario = new Usuario();
         private HashService service = new HashService();
 
-        public int ValidarUsuario(string email, string password_hash)
+        public int ValidarUsuario(string email, string password)
         {
             AccesoDB datos = new AccesoDB();
+            HashService service = new HashService();
             try
             {
 
-                datos.setearQuerySP("sp_ValidarUsuario");
-                datos.setearParametro("@email", email);
-                datos.setearParametro("@password_hash", password_hash);
+                datos.setearQuerySP("sp_ObtenerUsuarioPorEmail");
+                datos.setearParametro("@Email", email);
                 datos.ejectuarLectura();
 
                 if (datos.Lector.Read())
                 {
+                    string storedHash = datos.Lector["password_hash"].ToString();
                     int id = (int)datos.Lector["id"];
-                    return id;
+                    if (service.VerifyPassword(password, storedHash))
+                    {
+                        return id;
+                    }
                 }
-
                 return -1;
 
             }
@@ -42,6 +45,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
         public bool Registrar(Usuario nuevo)
         {
             AccesoDB datos = new AccesoDB();

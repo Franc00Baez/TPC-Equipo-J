@@ -30,11 +30,9 @@ namespace Consultorio_Medico
                 Session.Add("Registrado", seRegistro);
                 Response.Redirect("Login.aspx");
 
-
-
             }catch (Exception ex)
             {
-                throw;
+                Session.Add("error", ex.ToString());
             }
         }
     }
