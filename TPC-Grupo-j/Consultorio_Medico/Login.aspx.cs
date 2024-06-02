@@ -22,7 +22,7 @@ namespace Consultorio_Medico
             negocio.Login log = new negocio.Login();
             int id = log.ValidarUsuario(txtEmail.Text, txtPass.Text);
             //lblID.Text = id.ToString();
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Default.aspx");
         }
     }
 }
