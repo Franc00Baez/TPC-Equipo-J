@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace negocio
 {
@@ -71,6 +72,14 @@ namespace negocio
             if (lector != null)
                 lector.Close();
             conexion.Close();
+        }
+        public void setearParametroSalida(string nombre, SqlDbType tipo)
+        {
+            comando.Parameters.Add(new SqlParameter(nombre, tipo) { Direction = ParameterDirection.Output });
+        }
+        public object obtenerParametroSalida(string nombre)
+        {
+            return comando.Parameters[nombre].Value;
         }
     }
 

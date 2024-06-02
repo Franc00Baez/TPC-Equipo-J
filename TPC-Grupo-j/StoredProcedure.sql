@@ -18,8 +18,7 @@ create proc sp_RegistrarUsuario(
 @img_url varchar(200),
 @id_rol int,
 @fecha_creacion DATETIME,
-@Registrado bit output,
-@Mensaje varchar(50) output
+@Registrado bit output
 )
 as
 begin 
@@ -27,12 +26,10 @@ begin
 	begin
 		insert into USUARIOS(email, password_hash, img_url, id_rol, fecha_creacion) values(@email, @password_hash, @img_url, @id_rol, @fecha_creacion)
 		set @Registrado = 1
-		set @Mensaje = 'usuario registrado'
 	end
 	else
 	begin
 		set @registrado = 0
-		set @Mensaje = 'correo ya existente'
 	end
 end;
 
@@ -46,5 +43,5 @@ begin
 	if(exists(select * from USUARIOS where email = @email and password_hash = @password_hash))
 		select id from USUARIOS where email = @email and password_hash = @password_hash
 	else
-		select '0'
-end;
+		select 0 as id
+end
