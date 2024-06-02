@@ -122,3 +122,9 @@ C:\Users\Franco\FACULTAD\prog3\TPC-Equipo-J\TPC-Grupo-j\Consultorio_Medico\bin\n
 C:\Users\Franco\FACULTAD\prog3\TPC-Equipo-J\TPC-Grupo-j\Consultorio_Medico\bin\app.helpers.pdb
 C:\Users\Franco\FACULTAD\prog3\TPC-Equipo-J\TPC-Grupo-j\Consultorio_Medico\bin\dominio.pdb
 C:\Users\Franco\FACULTAD\prog3\TPC-Equipo-J\TPC-Grupo-j\Consultorio_Medico\bin\negocio.pdb
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta\TPC-Equipo-J\TPC-Grupo-j\Consultorio_Medico\bin\app.helpers.dll
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta\TPC-Equipo-J\TPC-Grupo-j\Consultorio_Medico\bin\dominio.dll
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta\TPC-Equipo-J\TPC-Grupo-j\Consultorio_Medico\bin\negocio.dll
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta\TPC-Equipo-J\TPC-Grupo-j\Consultorio_Medico\bin\app.helpers.pdb
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta\TPC-Equipo-J\TPC-Grupo-j\Consultorio_Medico\bin\dominio.pdb
+C:\Users\Lucio\OneDrive\Escritorio\Nueva carpeta\TPC-Equipo-J\TPC-Grupo-j\Consultorio_Medico\bin\negocio.pdb

@@ -11,7 +11,7 @@ namespace Consultorio_Medico
 {
 
 
-    public partial class Home
+    public partial class Perfil
     {
     }
 }
