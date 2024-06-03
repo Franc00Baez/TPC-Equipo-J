@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace negocio
 {
@@ -21,6 +22,7 @@ namespace negocio
 
         public int insertarNuevo(Usuario nuevo)
         {
+            Seguridad seguridad = new Seguridad();
             AccesoDB accesoDB = new AccesoDB();
             try
             {
@@ -34,7 +36,7 @@ namespace negocio
             catch (Exception ex)
             {
 
-                ex.ToString();
+                seguridad.ManejarExcepcion(ex, HttpContext.Current);
             }
             finally
             {
@@ -43,9 +45,45 @@ namespace negocio
             return 0;
         }
 
+        public Usuario BuscarUsuarioPorId(int id)
+        {
+            Usuario user = new Usuario();
+            AccesoDB datos = new AccesoDB();
+            Seguridad seguridad = new Seguridad();
+            user.id = -1;
+
+
+            try
+            {
+                datos.setearQuerySP("sp_GetUsuarioPorID");
+                datos.setearParametro("@usuario_ID", id);
+                datos.ejectuarLectura();
+                if(datos.Lector.Read())
+                {
+                    user.id = (int)datos.Lector["id"];
+                    user.email = datos.Lector["email"].ToString();
+                    user.password_hash = datos.Lector["password_hash"].ToString();
+                    user.img_url = datos.Lector["img_url"] != DBNull.Value ? datos.Lector["img_url"].ToString() : "";
+                    user.rol_type = (UserRole)datos.Lector["id_rol"];
+                    user.fecha_creacion = (DateTime)datos.Lector["fecha_creacion"];
+                    return user;
+                }
+                return user;
+            } catch (Exception ex)
+            {
+                seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                return user;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public bool Login(Usuario usuario)
         {
             AccesoDB datos = new AccesoDB();
+            Seguridad seguridad = new Seguridad();
             try
             {
                 datos.setearQuery("Select id, email, password_hash,img_url,id_rol,fecha_creacion from USUARIOS Where email = @email AND password_hash = @pass");
@@ -68,7 +106,8 @@ namespace negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                return false;
             }
             finally
             {

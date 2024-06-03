@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Web;
 using System.Data;
 
 namespace negocio
@@ -42,6 +43,7 @@ namespace negocio
         }
         public void ejectuarLectura()
         {
+            Seguridad seguridad = new Seguridad();
             comando.Connection = conexion;
 
             try
@@ -51,13 +53,13 @@ namespace negocio
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                seguridad.ManejarExcepcion(ex, HttpContext.Current);
             }
         }
 
         public void ejecutarAccion()
         {
+            Seguridad seguridad = new Seguridad();
             comando.Connection = conexion;
             try
             {
@@ -67,12 +69,13 @@ namespace negocio
             catch (Exception ex)
             {
 
-                throw ex;
+                seguridad.ManejarExcepcion(ex, HttpContext.Current);
             }
         }
 
         public int ejecutarAccionScalar()
         {
+            Seguridad seguridad = new Seguridad();
             comando.Connection = conexion;
             try
             {
@@ -82,7 +85,8 @@ namespace negocio
             catch (Exception ex)
             {
 
-                throw ex;
+                seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                return -1;
             }
         }
         public void cerrarConexion()

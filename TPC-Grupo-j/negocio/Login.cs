@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using dominio;
 using helpers;
 
@@ -10,13 +11,13 @@ namespace negocio
 {
     public class Login
     {
-        private Usuario usuario = new Usuario();
-        private HashService service = new HashService();
+        
 
         public int ValidarUsuario(string email, string password)
         {
             AccesoDB datos = new AccesoDB();
             HashService service = new HashService();
+            Seguridad seguridad = new Seguridad();
             try
             {
 
@@ -38,7 +39,8 @@ namespace negocio
             }
             catch (Exception ex)
             {
-                throw new Exception("Error" + ex.ToString());
+                seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                return -1; 
             }
             finally
             {
@@ -49,7 +51,9 @@ namespace negocio
         public bool Registrar(Usuario nuevo)
         {
             AccesoDB datos = new AccesoDB();
+            HashService service = new HashService();
             string passwordhash = service.HashPassword(nuevo.password_hash);
+            Seguridad seguridad = new Seguridad();
             try
             {
                 datos.setearQuerySP("sp_RegistrarUsuario");
@@ -57,7 +61,7 @@ namespace negocio
 
                 datos.setearParametro("@email", nuevo.email);
                 datos.setearParametro("@password_hash", passwordhash);
-                datos.setearParametro("@img_url", string.IsNullOrEmpty(usuario.img_url) ? (object)DBNull.Value : usuario.img_url);
+                datos.setearParametro("@img_url", string.IsNullOrEmpty(nuevo.img_url) ? (object)DBNull.Value : nuevo.img_url);
                 datos.setearParametro("@id_rol", (int)nuevo.rol_type);
                 datos.setearParametro("@fecha_creacion", DateTime.Now);
 
@@ -69,7 +73,8 @@ namespace negocio
 
             }catch (Exception ex)
             {
-                throw new Exception("Error" + ex.ToString());
+                seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                return false;
             }
             finally
             {

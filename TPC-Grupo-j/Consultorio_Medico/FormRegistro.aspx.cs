@@ -20,6 +20,7 @@ namespace Consultorio_Medico
         {
             Usuario user = new Usuario(1);
             negocio.Login service = new negocio.Login();
+            Seguridad seguridad = new Seguridad();
             bool seRegistro;
 
             try
@@ -32,7 +33,7 @@ namespace Consultorio_Medico
 
             }catch (Exception ex)
             {
-                Session.Add("error", ex.ToString());
+                seguridad.ManejarExcepcion(ex, HttpContext.Current);
             }
         }
     }

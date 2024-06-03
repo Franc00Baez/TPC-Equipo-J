@@ -70,3 +70,12 @@ BEGIN
     OUTPUT INSERTED.id
     VALUES (@Email, @Password_Hash, @Img_Url,@id_rol, @Fecha_Creacion)
 END
+
+CREATE PROCEDURE sp_GetUsuarioPorID
+    @usuario_id INT
+AS
+BEGIN
+    SELECT *
+    FROM USUARIOS
+    WHERE id = @usuario_id;
+END;

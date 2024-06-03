@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using negocio;
+using dominio;
 
 namespace Consultorio_Medico
 {
@@ -11,6 +13,17 @@ namespace Consultorio_Medico
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!IsPostBack)
+            {
+                if(Session["ID"] != null)
+                {
+                    Usuario logueado;
+                    UsuarioNegocio negocio = new UsuarioNegocio();
+
+                    logueado = negocio.BuscarUsuarioPorId((int)Session["ID"]);
+                    Session.Add("usuario", logueado);
+                }
+            }
             
         }
     }

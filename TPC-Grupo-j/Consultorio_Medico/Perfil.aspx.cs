@@ -17,6 +17,8 @@ namespace Consultorio_Medico
             if (Session["usuario"] != null)
             {
                 txtbEmail.Text = user.email;
+                txtbFecha.Text = user.fecha_creacion.ToString();
+                txtbRol.Text = user.rol_type.ToString();
             }
             else
             {

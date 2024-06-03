@@ -24,10 +24,10 @@ namespace Consultorio_Medico
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
-        {
-            Usuario usuario = new Usuario();    
+        {  
             negocio.Login log = new negocio.Login();
-            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();       
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            Seguridad seguridad = new Seguridad();
             try
             {
 
@@ -35,16 +35,16 @@ namespace Consultorio_Medico
                 lblID.Text = id.ToString();
                 if (!(id <= 0))
                 {
-                    usuario.email = txtEmail.Text;
-                    Session.Add("usuario",usuario);
-                    Response.Redirect("Default.aspx");
+                    Session.Add("ID", id);
+                    Response.Redirect("Default.aspx", false);
                 }
 
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex.ToString());
+                seguridad.ManejarExcepcion(ex, HttpContext.Current);
             }
         }
+
     }
 }
