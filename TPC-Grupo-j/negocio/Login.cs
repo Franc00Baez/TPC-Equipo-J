@@ -64,6 +64,7 @@ namespace negocio
                 datos.setearParametro("@img_url", string.IsNullOrEmpty(nuevo.img_url) ? (object)DBNull.Value : nuevo.img_url);
                 datos.setearParametro("@id_rol", (int)nuevo.rol_type);
                 datos.setearParametro("@fecha_creacion", DateTime.Now);
+                datos.setearParametro("@activo", true);
 
                 datos.setearParametroSalida("@Registrado", System.Data.SqlDbType.Bit);
 

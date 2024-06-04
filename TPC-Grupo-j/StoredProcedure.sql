@@ -18,13 +18,14 @@ create proc sp_RegistrarUsuario(
 @img_url varchar(200),
 @id_rol int,
 @fecha_creacion DATETIME,
+@activo BIT,
 @Registrado bit output
 )
 as
 begin 
 	if(not exists(select * from USUARIOS Where email = @email))
 	begin
-		insert into USUARIOS(email, password_hash, img_url, id_rol, fecha_creacion) values(@email, @password_hash, @img_url, @id_rol, @fecha_creacion)
+		insert into USUARIOS(email, password_hash, img_url, id_rol, fecha_creacion, activo) values(@email, @password_hash, @img_url, @id_rol, @fecha_creacion, @activo)
 		set @Registrado = 1
 	end
 	else

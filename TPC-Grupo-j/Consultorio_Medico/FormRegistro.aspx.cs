@@ -29,11 +29,12 @@ namespace Consultorio_Medico
                 user.password_hash = txtPassword.Text;
                 seRegistro=service.Registrar(user);
                 Session.Add("Registrado", seRegistro);
-                Response.Redirect("Login.aspx");
+                Response.Redirect("Login.aspx", false);
 
             }catch (Exception ex)
             {
                 seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                
             }
         }
     }
