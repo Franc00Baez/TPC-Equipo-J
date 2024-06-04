@@ -17,7 +17,6 @@ namespace negocio
         {
             AccesoDB datos = new AccesoDB();
             HashService service = new HashService();
-            Seguridad seguridad = new Seguridad();
             try
             {
 
@@ -39,7 +38,7 @@ namespace negocio
             }
             catch (Exception ex)
             {
-                seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
                 return -1; 
             }
             finally
@@ -53,7 +52,6 @@ namespace negocio
             AccesoDB datos = new AccesoDB();
             HashService service = new HashService();
             string passwordhash = service.HashPassword(nuevo.password_hash);
-            Seguridad seguridad = new Seguridad();
             try
             {
                 datos.setearQuerySP("sp_RegistrarUsuario");
@@ -74,7 +72,7 @@ namespace negocio
 
             }catch (Exception ex)
             {
-                seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
                 return false;
             }
             finally

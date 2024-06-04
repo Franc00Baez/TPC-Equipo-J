@@ -2,12 +2,22 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Web;
+using dominio;
 
 namespace negocio
 {
-    public class Seguridad
+    public static class Seguridad
     {
-        public void ManejarExcepcion(Exception ex, HttpContext contexto)
+        public static bool ValidarUsuario(object user)
+        {
+            Usuario logueado = user != null ? (Usuario)user : null;
+            if (logueado != null && logueado.id > 0)
+                return true;
+            else
+                return false;
+
+        }
+        public static void ManejarExcepcion(Exception ex, HttpContext contexto)
         {
             //logException(ex);
 

@@ -22,7 +22,6 @@ namespace negocio
 
         public int insertarNuevo(Usuario nuevo)
         {
-            Seguridad seguridad = new Seguridad();
             AccesoDB accesoDB = new AccesoDB();
             try
             {
@@ -36,7 +35,7 @@ namespace negocio
             catch (Exception ex)
             {
 
-                seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
             }
             finally
             {
@@ -49,7 +48,6 @@ namespace negocio
         {
             Usuario user = new Usuario();
             AccesoDB datos = new AccesoDB();
-            Seguridad seguridad = new Seguridad();
             user.id = -1;
 
 
@@ -66,12 +64,13 @@ namespace negocio
                     user.img_url = datos.Lector["img_url"] != DBNull.Value ? datos.Lector["img_url"].ToString() : "";
                     user.rol_type = (UserRole)datos.Lector["id_rol"];
                     user.fecha_creacion = (DateTime)datos.Lector["fecha_creacion"];
+                    user.activo = (bool)datos.Lector["activo"];
                     return user;
                 }
                 return user;
             } catch (Exception ex)
             {
-                seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
                 return user;
             }
             finally
@@ -83,7 +82,6 @@ namespace negocio
         public bool Login(Usuario usuario)
         {
             AccesoDB datos = new AccesoDB();
-            Seguridad seguridad = new Seguridad();
             try
             {
                 datos.setearQuery("Select id, email, password_hash,img_url,id_rol,fecha_creacion from USUARIOS Where email = @email AND password_hash = @pass");
@@ -106,7 +104,7 @@ namespace negocio
             }
             catch (Exception ex)
             {
-                seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
                 return false;
             }
             finally

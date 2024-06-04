@@ -22,7 +22,7 @@ namespace dominio
         public string password_hash { get; set; }
         public string img_url { get; set; }
         public DateTime fecha_creacion { get; set; }
-
         public UserRole rol_type { get; set; }
+        public bool activo { get; set; }
     }
 }

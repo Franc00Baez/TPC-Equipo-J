@@ -43,7 +43,6 @@ namespace negocio
         }
         public void ejectuarLectura()
         {
-            Seguridad seguridad = new Seguridad();
             comando.Connection = conexion;
 
             try
@@ -53,13 +52,12 @@ namespace negocio
             }
             catch (Exception ex)
             {
-                seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
             }
         }
 
         public void ejecutarAccion()
         {
-            Seguridad seguridad = new Seguridad();
             comando.Connection = conexion;
             try
             {
@@ -69,13 +67,12 @@ namespace negocio
             catch (Exception ex)
             {
 
-                seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
             }
         }
 
         public int ejecutarAccionScalar()
         {
-            Seguridad seguridad = new Seguridad();
             comando.Connection = conexion;
             try
             {
@@ -85,7 +82,7 @@ namespace negocio
             catch (Exception ex)
             {
 
-                seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
                 return -1;
             }
         }

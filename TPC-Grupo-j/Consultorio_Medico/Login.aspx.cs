@@ -27,7 +27,6 @@ namespace Consultorio_Medico
         {  
             negocio.Login log = new negocio.Login();
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-            Seguridad seguridad = new Seguridad();
             try
             {
 
@@ -42,7 +41,7 @@ namespace Consultorio_Medico
             }
             catch (Exception ex)
             {
-                seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
             }
         }
 

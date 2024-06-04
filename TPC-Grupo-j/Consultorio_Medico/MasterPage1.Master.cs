@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using negocio;
 
 namespace Consultorio_Medico
 {
@@ -11,7 +12,11 @@ namespace Consultorio_Medico
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-         
+            if(Page is Perfil)
+            {
+                if(!Seguridad.ValidarUsuario(Session["usuario"]))
+                Response.Redirect("Login.aspx");
+            }
         }
     }
 }
