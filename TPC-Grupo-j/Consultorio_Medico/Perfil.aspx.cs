@@ -20,10 +20,6 @@ namespace Consultorio_Medico
                 txtbFecha.Text = user.fecha_creacion.ToString();
                 txtbRol.Text = user.rol_type.ToString();
             }
-            else
-            {
-                Response.Redirect("Login.aspx");
-            }
         }
     }
 }

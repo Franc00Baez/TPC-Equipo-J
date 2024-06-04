@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Consultorio_Medico.Site" %>
+
+<!DOCTYPE html>
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -144,3 +146,4 @@
     </form>
 </body>
 </html>
+

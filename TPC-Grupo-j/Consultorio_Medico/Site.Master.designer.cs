@@ -11,7 +11,7 @@ namespace Consultorio_Medico
 {
 
 
-    public partial class Site1
+    public partial class Site
     {
 
         /// <summary>
@@ -31,6 +31,15 @@ namespace Consultorio_Medico
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+
+        /// <summary>
+        /// Control loginLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor loginLink;
 
         /// <summary>
         /// Control ContentPlaceHolder1.

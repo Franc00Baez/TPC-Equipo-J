@@ -8,14 +8,16 @@ using negocio;
 
 namespace Consultorio_Medico
 {
-    public partial class Site1 : System.Web.UI.MasterPage
+    public partial class Site : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if(Page is Perfil)
             {
                 if(!Seguridad.ValidarUsuario(Session["usuario"]))
-                Response.Redirect("Login.aspx");
+                {
+                    Response.Redirect("Login.aspx");
+                }
             }
         }
     }
