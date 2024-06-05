@@ -89,7 +89,7 @@
                             <a class="nav-link" aria-current="page" href="Default.aspx">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Especialidades</a>
+                            <a class="nav-link" aria-current="page" href="Especialidades.aspx">Especialidades</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="#">Administrar usuarios</a>
