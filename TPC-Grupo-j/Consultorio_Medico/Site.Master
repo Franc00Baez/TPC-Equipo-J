@@ -67,9 +67,12 @@
             }
 
         .navbar-custom {
-            background-color:#a9d0b8;
+            background-color: #a9d0b8;
         }
 
+        .imgAvatar{
+            height:32px; width:32px; border-radius: 50%;
+        }
     </style>
 </head>
 <body>
@@ -99,11 +102,19 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="Perfil.aspx">Perfil</a>
                         </li>
-                        <img src="..//resources//avatar.png" />
+                        <asp:Image ID="imgAvatar" runat ="server" cssclass="img-fluid mb-3" style="height:32px; width:32px; border-radius: 50%;"/>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="Login.aspx" ID="loginLink" runat="server">Login</a>
+                            <%if (!negocio.Seguridad.ValidarUsuario(Session["usuario"]))
+                                {  %>
+                            <a class="nav-link" aria-current="page" href="Login.aspx" id="loginLink" runat="server">Login</a>
                         </li>
-                        <img src="..//resources//login.png" />
+                        <asp:Image ID="imgLogin" ImageUrl="..//resources//login.png" runat="server" cssclass="img-fluid mb-3"/>
+                        <%}
+                            else
+                            {
+                        %>
+                        <asp:LinkButton ID="btnLogOut" runat="server" CssClass="nav-link" OnClick="btnLogOut_Click">Salir</asp:LinkButton>
+                        <% }%>
                     </ul>
                 </div>
             </div>

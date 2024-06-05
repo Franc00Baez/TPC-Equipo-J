@@ -19,6 +19,7 @@ namespace Consultorio_Medico
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
             Usuario user = new Usuario(1);
+            Mail mail = new Mail();
             negocio.Login service = new negocio.Login();
             bool seRegistro;
 
@@ -29,7 +30,7 @@ namespace Consultorio_Medico
                 seRegistro=service.Registrar(user);
                 Session.Add("Registrado", seRegistro);
                 Response.Redirect("Login.aspx", false);
-
+                mail.armarCorreo(user.email, "Bienvenid@", "Gracias por registrate");
             }catch (Exception ex)
             {
                 Seguridad.ManejarExcepcion(ex, HttpContext.Current);

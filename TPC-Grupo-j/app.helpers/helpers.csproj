@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Enum.cs" />
     <Compile Include="HashService.cs" />
+    <Compile Include="Mail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

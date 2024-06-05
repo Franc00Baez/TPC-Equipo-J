@@ -30,7 +30,11 @@
                     <input type="file" id="txtImagen" runat="server" Class="form-control"/>
                 </div>
                 <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid mb-3" ImageUrl="..//resources//perfil.jpg"/>
-            </div>
-       
+            </div>    
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <asp:Button ID="btnGuardar" runat="server" Text="Guardar cambios" OnClick="btnGuardar_Click"/>
+        </div>
     </div>
 </asp:Content>

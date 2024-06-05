@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.UI.WebControls.WebParts;
 
 namespace negocio
 {
@@ -44,6 +45,26 @@ namespace negocio
             return 0;
         }
 
+        public void actualizar( Usuario usuario)
+        {
+                AccesoDB accesoDB = new AccesoDB();
+            try
+            {
+                accesoDB.setearQuery("Update USUARIOS set img_url = @imagen WHERE id = @id");
+                accesoDB.setearParametro("@imagen", usuario.img_url);
+                accesoDB.setearParametro("@id", usuario.id);
+                accesoDB.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                
+            }
+            finally
+            {
+                accesoDB.cerrarConexion();
+            }
+        }
         public Usuario BuscarUsuarioPorId(int id)
         {
             Usuario user = new Usuario();
