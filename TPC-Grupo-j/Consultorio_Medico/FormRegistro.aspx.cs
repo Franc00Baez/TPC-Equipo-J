@@ -37,5 +37,10 @@ namespace Consultorio_Medico
 
             }
         }
+
+        protected void btnRegresar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
 }

@@ -45,5 +45,9 @@ namespace Consultorio_Medico
             }
         }
 
+        protected void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("FormRegistro.aspx");
+        }
     }
 }
