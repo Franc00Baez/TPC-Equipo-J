@@ -20,6 +20,10 @@ namespace Consultorio_Medico
                 txtbEmail.Text = user.email;
                 txtbFecha.Text = user.fecha_creacion.ToString();
                 txtbRol.Text = user.rol_type.ToString();
+                if (!string.IsNullOrEmpty(user.img_url))
+                {
+                    imgPerfil.ImageUrl = "~/Images/img_perfil/" + user.img_url;
+                }
             }
         }
 
@@ -45,6 +49,11 @@ namespace Consultorio_Medico
 
                 Session.Add("error", ex.ToString());
             }
+        }
+
+        protected void btnSalir_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
         }
     }
 }

@@ -17,21 +17,35 @@ namespace Consultorio_Medico
 
             if (Page is Perfil)
             {
-                if(!Seguridad.ValidarUsuario(Session["usuario"]))
+                if (!Seguridad.ValidarUsuario(Session["usuario"]))
                 {
                     Response.Redirect("Login.aspx");
 
                 }
             }
 
-            if (Seguridad.ValidarUsuario(Session["usuario"]))
+            if (Session["usuario"] != null && Seguridad.ValidarUsuario(Session["usuario"]))
             {
-                imgAvatar.ImageUrl = "~/Images/img_perfil/" + ((Usuario)Session["usuario"]).img_url;
+                Usuario usuario = (Usuario)Session["usuario"];
 
+                if (!string.IsNullOrEmpty(usuario.img_url))
+                {
+                    imgAvatar.ImageUrl = "~/Images/img_perfil/" + usuario.img_url;
+                }
+                else
+                {
+                    imgAvatar.ImageUrl = "..//resources//avatar.png";
+                }
             }
             else
             {
                 imgAvatar.ImageUrl = "..//resources//avatar.png";
+            }
+
+
+            if (Seguridad.ValidarUsuario(Session["usuario"]))
+            {
+                lblNombre.Text = ((Usuario)Session["usuario"]).email;
             }
         }
 

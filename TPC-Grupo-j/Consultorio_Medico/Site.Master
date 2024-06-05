@@ -99,6 +99,7 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
+                            <asp:Label ID="lblNombre" class="nav-link" runat="server"></asp:Label>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="Perfil.aspx">Perfil</a>
                         </li>
