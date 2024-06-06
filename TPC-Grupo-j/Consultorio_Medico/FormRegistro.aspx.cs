@@ -13,7 +13,10 @@ namespace Consultorio_Medico
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["usuario"] != null)
+            {
+                Response.Redirect("Default.aspx");
+            }
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
@@ -21,16 +24,27 @@ namespace Consultorio_Medico
             Usuario user = new Usuario(1);
             Mail mail = new Mail();
             negocio.Login service = new negocio.Login();
-            bool seRegistro;
+            UsuarioNegocio negocio = new UsuarioNegocio();
 
             try
             {
                 user.email = txtEmail.Text;
                 user.password_hash = txtPassword.Text;
-                seRegistro=service.Registrar(user);
-                Session.Add("Registrado", seRegistro);
-                Response.Redirect("Login.aspx", false);
-                mail.armarCorreo(user.email, "Bienvenid@", "Gracias por registrate");
+                if(service.Registrar(user))
+                {
+                    user.id = service.ValidarUsuario(user.email, user.password_hash);
+                    Session.Add("usuario", negocio.BuscarUsuarioPorId(user.id));
+                    mail.armarCorreo(user.email, "Bienvenid@", "Gracias por registrate");
+
+                    Response.Redirect("Default.aspx", false);
+                }
+                else
+                {
+                    lblValidacion.ForeColor = System.Drawing.Color.Red;
+                    lblValidacion.Text = "El mail ingresado ya esta asociado a una cuenta.";
+                }
+                
+                
             }catch (Exception ex)
             {
                 Seguridad.ManejarExcepcion(ex, HttpContext.Current);

@@ -1,0 +1,11 @@
+Fecha y Hora: 5/6/2024 00:16:08
+Tipo de Excepción: ThreadAbortException
+Mensaje: Subproceso anulado.
+Stack Trace:    en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.AbortCurrentThread()
+   en System.Web.HttpResponse.End()
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   en System.Web.HttpResponse.Redirect(String url)
+   en Consultorio_Medico.Default.btnIngresar_Click(Object sender, EventArgs e) en C:\Users\Franco\FACULTAD\prog3\TPC-Equipo-J\TPC-Grupo-j\Consultorio_Medico\Login.aspx.cs:línea 38
+--------------------------------------------------------------------------------

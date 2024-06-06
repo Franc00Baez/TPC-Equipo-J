@@ -52,8 +52,13 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+</asp:ScriptManager>
     <div class="form-container">
         <div class="form-title">Registro</div>
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate><asp:Label Text="" ID="lblValidacion" CssClass="p" runat="server" /></ContentTemplate>
+        </asp:UpdatePanel>
         <div class="mb-3">
             <label for="txtEmail" class="form-label">Correo Electrónico</label>
             <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" aria-describedby="emailHelp" />

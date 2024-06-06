@@ -27,6 +27,7 @@ namespace Consultorio_Medico
             if (Session["usuario"] != null && Seguridad.ValidarUsuario(Session["usuario"]))
             {
                 Usuario usuario = (Usuario)Session["usuario"];
+                lblNombre.Text = usuario.email;
 
                 if (!string.IsNullOrEmpty(usuario.img_url))
                 {
@@ -40,12 +41,6 @@ namespace Consultorio_Medico
             else
             {
                 imgAvatar.ImageUrl = "..//resources//avatar.png";
-            }
-
-
-            if (Seguridad.ValidarUsuario(Session["usuario"]))
-            {
-                lblNombre.Text = ((Usuario)Session["usuario"]).email;
             }
         }
 

@@ -15,14 +15,14 @@ namespace Consultorio_Medico
         {
             if(!IsPostBack)
             {
-                if(Session["ID"] != null)
+                if (Session["ID"] != null)
                 {
                     Usuario logueado;
                     UsuarioNegocio negocio = new UsuarioNegocio();
 
                     logueado = negocio.BuscarUsuarioPorId((int)Session["ID"]);
                     Session.Add("usuario", logueado);
-                }
+                } 
             }
             
         }
