@@ -78,13 +78,13 @@ namespace Consultorio_Medico
         protected global::System.Web.UI.WebControls.Label lblImagen;
 
         /// <summary>
-        /// Control txtImagen.
+        /// Control fileupd.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile txtImagen;
+        protected global::System.Web.UI.WebControls.FileUpload fileupd;
 
         /// <summary>
         /// Control imgPerfil.

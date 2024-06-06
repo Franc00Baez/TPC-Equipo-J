@@ -31,12 +31,11 @@
         }
 
         .profile-image {
-            max-width: 200px;
-            border-radius: 50%;
+            width: 400px;
+            height: 400px;
             display: block;
-            margin-left: auto;
-            margin-right: auto;
             margin-bottom: 20px;
+            border-radius:50%;
         }
 
         .btn-custom {
@@ -91,20 +90,20 @@
                     <asp:Label ID="lblRol" CssClass="form-label profile-label" runat="server">Rol de usuario</asp:Label>
                     <asp:TextBox ID="txtbRol" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
                 </div>
+                <div class="form-group">
+                    <asp:Label ID="lblImagen" CssClass="form-label profile-label" runat="server">Imagen de perfil</asp:Label>
+                    <asp:FileUpload ID="fileupd" runat="server" CssClass="form-control" />
+                </div>
             </div>
             <div class="col-md-2 separator"></div>
             <div class="col-md-5 text-center profile-section">
-                <div class="form-group">
-                    <asp:Label ID="lblImagen" CssClass="form-label profile-label" runat="server">Imagen de perfil</asp:Label>
-                    <input type="file" id="txtImagen" runat="server" class="form-control" />
-                </div>
-                <asp:Image ID="imgPerfil" runat="server" CssClass="profile-image img-fluid mb-3" ImageUrl="../resources/perfil.jpg" />
+                <asp:Image ID="imgPerfil" runat="server" CssClass="profile-image mb-3" ImageUrl="../resources/perfil.jpg" />
             </div>
         </div>
         <div class="row btn-container">
             <div class="col-md-12">
                 <asp:Button ID="btnGuardar" runat="server" CssClass="btn-custom" Text="Guardar cambios" OnClick="btnGuardar_Click" />
-                <asp:Button ID="btnSalir" runat="server" CssClass="btn-custom" Text="Salir" OnClick="btnSalir_Click" />
+                <asp:Button ID="btnSalir" runat="server" CssClass="btn-custom" Text="Volver" OnClick="btnSalir_Click" />
             </div>
         </div>
     </div>
