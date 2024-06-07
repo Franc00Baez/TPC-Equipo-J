@@ -12,15 +12,6 @@ namespace negocio
 {
     public class UsuarioNegocio
     {
-        /*
-         ID
-         EMAIL
-         PASS
-         IMG
-         IDROL
-         Fecha
-         */
-
         public int insertarNuevo(Usuario nuevo)
         {
             AccesoDB accesoDB = new AccesoDB();

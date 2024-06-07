@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdmUsuarios.aspx" />
+    <Content Include="CreacionUsuario.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Especialidades.aspx" />
     <Content Include="Login.aspx" />
@@ -78,6 +80,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdmUsuarios.aspx.cs">
+      <DependentUpon>AdmUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdmUsuarios.aspx.designer.cs">
+      <DependentUpon>AdmUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreacionUsuario.aspx.cs">
+      <DependentUpon>CreacionUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreacionUsuario.aspx.designer.cs">
+      <DependentUpon>CreacionUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
