@@ -22,6 +22,7 @@ namespace negocio
                 accesoDB.setearParametro("@password_hash", nuevo.password_hash);
                 accesoDB.setearParametro("@img_url", nuevo.img_url);
                 accesoDB.setearParametro("@fecha_creacion",nuevo.fecha_creacion);
+                accesoDB.setearParametro("@activo", 1);
                 return accesoDB.ejecutarAccionScalar();
             }
             catch (Exception ex)

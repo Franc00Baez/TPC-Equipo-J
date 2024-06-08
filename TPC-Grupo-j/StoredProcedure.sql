@@ -1,17 +1,7 @@
 ﻿USE CONSULTORIODB
 GO
---Obtener Permisos Por rol
-CREATE PROCEDURE sp_GetPermisosPorRol
-    @rol_name VARCHAR(50)
-AS
-BEGIN
-    SELECT P.permiso_name
-    FROM PERMISOS P
-    JOIN PERMISOS_X_ROLES PR ON P.id = PR.id_permiso
-    JOIN ROLES R ON PR.id_rol = R.id
-    WHERE R.rol_name = @rol_name;
-END;
 
+--Registra un nuevo usuario y devuelve si se pudo insertar en la DB.
 create proc sp_RegistrarUsuario(
 @email varchar(70),
 @password_hash varchar(200),
@@ -34,7 +24,8 @@ begin
 	end
 end;
 
-
+--Valida que el usuario se encuentre en la DB, de ser asi devuelve el id del usuario
+--de lo contrario devuelve 0.
 create proc sp_ValidarUsuario(
 @email varchar(70),
 @password_hash varchar(200)
@@ -53,13 +44,15 @@ AS
 BEGIN
     SELECT id, password_hash FROM USUARIOS WHERE email = @Email
 END
-
-CREATE PROCEDURE insertarNuevo
+--Inserta nuevo usuario en la Tabla de Usuarios
+CREATE PROCEDURE sp_InsertarNuevo
     @Email VARCHAR(70),
     @Password_Hash VARCHAR(200),
     @Img_Url VARCHAR(200),
 	@id_rol int,
-    @Fecha_Creacion DATETIME = NULL
+    @Fecha_Creacion DATETIME = NULL,
+    @activo bit
+
 AS
 BEGIN
     IF @Fecha_Creacion IS NULL
@@ -67,9 +60,9 @@ BEGIN
         SET @Fecha_Creacion = GETDATE()
     END
 
-    INSERT INTO USUARIOS (email, password_hash, img_url, id_rol, fecha_creacion)
+    INSERT INTO USUARIOS (email, password_hash, img_url, id_rol, fecha_creacion, activo)
     OUTPUT INSERTED.id
-    VALUES (@Email, @Password_Hash, @Img_Url,@id_rol, @Fecha_Creacion)
+    VALUES (@Email, @Password_Hash, @Img_Url,@id_rol, @Fecha_Creacion, @activo)
 END
 
 CREATE PROCEDURE sp_GetUsuarioPorID

@@ -6,16 +6,11 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    public class Especialista : Usuario
+    public class Recepcionista : Usuario
     {
-        public int idMed { get; set; }
-
-        public int idUsuario { get; set; }
-
         public string nombre { get; set; }
-
         public string apellido { get; set; }
+        public DateTime nacimiento { get; set; }
 
-        public DateTime fechaNac { get; set; }
     }
 }
