@@ -14,12 +14,9 @@ namespace Consultorio_Medico
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if(Seguridad.ValidarUsuario(Session["usuario"]))
             {
-                if (Session["Registrado"] != null)
-                {
-                    lblID.Text = Session["Registrado"].ToString();
-                }
+                Response.Redirect("Perfil.aspx");
             }
         }
 
@@ -31,7 +28,6 @@ namespace Consultorio_Medico
             {
 
                 int id = log.ValidarUsuario(txtEmail.Text, txtPass.Text);
-                lblID.Text = id.ToString();
                 if (!(id <= 0))
                 {
                     Session.Add("ID", id);
@@ -49,5 +45,6 @@ namespace Consultorio_Medico
         {
             Response.Redirect("FormRegistro.aspx");
         }
+
     }
 }

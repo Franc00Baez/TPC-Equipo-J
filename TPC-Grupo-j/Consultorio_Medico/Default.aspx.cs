@@ -13,16 +13,25 @@ namespace Consultorio_Medico
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            try
             {
-                if (Session["ID"] != null)
+                if (!IsPostBack)
                 {
-                    Usuario logueado;
-                    UsuarioNegocio negocio = new UsuarioNegocio();
+                    if (Session["ID"] != null )
+                    {
+                        Usuario logueado;
+                        UsuarioNegocio negocio = new UsuarioNegocio();
 
-                    logueado = negocio.BuscarUsuarioPorId((int)Session["ID"]);
-                    Session.Add("usuario", logueado);
-                } 
+                        logueado = negocio.BuscarUsuarioPorId((int)Session["ID"]);
+                        Session.Add("usuario", logueado);
+                        Session.Add("Rol", logueado.rol_type);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
             }
             
         }

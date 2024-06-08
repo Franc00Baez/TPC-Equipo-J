@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using negocio;
 using dominio;
+using helpers;
 
 namespace Consultorio_Medico
 {
@@ -13,15 +14,17 @@ namespace Consultorio_Medico
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Page is CreacionUsuario ||  Page is AdmUsuarios)
+            {
+                if (!Seguridad.ValidarUsuario(Session["usuario"]) ||  (UserRole)Session["Rol"] != UserRole.Admin)
+                    Response.Redirect("Default.aspx");
+            }
 
 
             if (Page is Perfil)
             {
                 if (!Seguridad.ValidarUsuario(Session["usuario"]))
-                {
                     Response.Redirect("Login.aspx");
-
-                }
             }
 
             if (Session["usuario"] != null && Seguridad.ValidarUsuario(Session["usuario"]))

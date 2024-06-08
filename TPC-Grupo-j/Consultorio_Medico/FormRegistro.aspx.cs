@@ -13,15 +13,15 @@ namespace Consultorio_Medico
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] != null)
+            if (Seguridad.ValidarUsuario(Session["usuario"]))
             {
-                Response.Redirect("Default.aspx");
+                Response.Redirect("Perfil.aspx");
             }
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            Usuario user = new Usuario(1);
+            Usuario user = new Usuario(2);
             Mail mail = new Mail();
             negocio.Login service = new negocio.Login();
             UsuarioNegocio negocio = new UsuarioNegocio();
@@ -34,6 +34,7 @@ namespace Consultorio_Medico
                 {
                     user.id = service.ValidarUsuario(user.email, user.password_hash);
                     Session.Add("usuario", negocio.BuscarUsuarioPorId(user.id));
+                    Session.Add("Rol", user.rol_type);
                     mail.armarCorreo(user.email, "Bienvenid@", "Gracias por registrate");
 
                     Response.Redirect("Default.aspx", false);

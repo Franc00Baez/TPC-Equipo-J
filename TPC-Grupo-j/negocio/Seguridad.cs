@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Web;
 using dominio;
+using helpers;
 
 namespace negocio
 {
@@ -17,6 +18,7 @@ namespace negocio
                 return false;
 
         }
+
         public static void ManejarExcepcion(Exception ex, HttpContext contexto)
         {
             //logException(ex);

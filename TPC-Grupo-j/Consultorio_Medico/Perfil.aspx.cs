@@ -15,7 +15,7 @@ namespace Consultorio_Medico
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Usuario user = (Usuario)Session["usuario"];
+            Usuario user = Session["usuario"] != null ? (Usuario)Session["usuario"] : null;
 
             if (Session["usuario"] != null)
             {
