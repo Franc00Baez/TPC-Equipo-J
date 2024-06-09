@@ -96,7 +96,6 @@
                 </div>
                 <%if ((int)Session["Rol"] == 2)
                     {%>
-
                         <div class="form-group">
                             <asp:Label ID="lblNombre" CssClass="form-label profile-label" runat="server">Nombre</asp:Label>
                             <asp:TextBox ID="txtbNombre" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
@@ -121,10 +120,10 @@
             </div>
         </div>
         <div class="row btn-container">
+            <div class="col-md-12">
                     <asp:Button Text="Editar Perfil" runat="server" ID="btnEditar" CssClass="btn-custom" OnClick="btnEditar_Click" />
                     <asp:Button ID="btnGuardar" runat="server" CssClass="btn-custom" Text="Guardar cambios" OnClick="btnGuardar_Click" Visible="false" />
                     <asp:Button ID="btnSalir" runat="server" CssClass="btn-custom" Text="Volver" OnClick="btnSalir_Click" />
-            <div class="col-md-12">
             </div>
         </div>
     </div>
