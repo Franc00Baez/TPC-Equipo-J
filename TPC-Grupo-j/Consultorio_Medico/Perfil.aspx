@@ -35,7 +35,7 @@
             height: 400px;
             display: block;
             margin-bottom: 20px;
-            border-radius:50%;
+            border-radius: 50%;
         }
 
         .btn-custom {
@@ -55,7 +55,7 @@
 
         .btn-container {
             margin-top: 30px;
-            margin-bottom:30px;
+            margin-bottom: 30px;
             text-align: center;
         }
 
@@ -90,6 +90,21 @@
                     <asp:Label ID="lblRol" CssClass="form-label profile-label" runat="server">Rol de usuario</asp:Label>
                     <asp:TextBox ID="txtbRol" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
                 </div>
+                <%if (rol == 2)
+                    {%>
+                <div class="form-group">
+                    <asp:Label ID="lblNombre" CssClass="form-label profile-label" runat="server">Nombre</asp:Label>
+                    <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblApellido" CssClass="form-label profile-label" runat="server">Nombre</asp:Label>
+                    <asp:TextBox ID="txtApellido" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                </div>
+                <div class="form-group">
+                        <asp:Label ID="lblNacimiento" CssClass="form-label profile-label" runat="server">Nombre</asp:Label>
+                        <asp:TextBox ID="txtNacimiento" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                        </div>
+                <%}%>
                 <div class="form-group">
                     <asp:Label ID="lblImagen" CssClass="form-label profile-label" runat="server">Imagen de perfil</asp:Label>
                     <asp:FileUpload ID="fileupd" runat="server" CssClass="form-control" />

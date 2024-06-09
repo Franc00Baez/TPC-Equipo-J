@@ -73,3 +73,35 @@ BEGIN
     FROM USUARIOS
     WHERE id = @usuario_id;
 END;
+
+CREATE PROCEDURE sp_InsertarRecepcionista
+(
+    @usuario_id INT,
+    @nombre VARCHAR(50),
+    @apellido VARCHAR(50),
+    @nacimiento DATE
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insertar una fila en la tabla RECEPCIONISTAS
+    INSERT INTO RECEPCIONISTAS (usuario_id, nombre, apellido, nacimiento)
+    VALUES (@usuario_id, @nombre, @apellido, @nacimiento);
+
+END;
+
+CREATE PROCEDURE sp_BuscarRecepcionistaPorUsuarioID
+(
+    @usuario_id INT
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Buscar al recepcionista por su usuario_id
+    SELECT id, usuario_id, nombre, apellido, nacimiento
+    FROM RECEPCIONISTAS
+    WHERE usuario_id = @usuario_id;
+
+END;

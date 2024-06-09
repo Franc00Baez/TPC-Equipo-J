@@ -25,6 +25,7 @@ namespace Consultorio_Medico
             Mail mail = new Mail();
             negocio.Login service = new negocio.Login();
             UsuarioNegocio negocio = new UsuarioNegocio();
+            RecNegocio negocio_rec = new RecNegocio();
 
             try
             {
@@ -33,10 +34,11 @@ namespace Consultorio_Medico
                 if(service.Registrar(user))
                 {
                     user.id = service.ValidarUsuario(user.email, user.password_hash);
-                    Session.Add("usuario", negocio.BuscarUsuarioPorId(user.id));
+                    user = negocio.BuscarUsuarioPorId(user.id);
+                    negocio_rec.registrarRecepcionista(user);
+                    Session.Add("usuario", user);
                     Session.Add("Rol", user.rol_type);
                     mail.armarCorreo(user.email, "Bienvenid@", "Gracias por registrate");
-
                     Response.Redirect("Default.aspx", false);
                 }
                 else

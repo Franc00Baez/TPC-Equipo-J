@@ -17,7 +17,7 @@ namespace negocio
             AccesoDB accesoDB = new AccesoDB();
             try
             {
-                accesoDB.setearQuerySP("insertarNuevo");
+                accesoDB.setearQuerySP("sp_InsertarNuevo");
                 accesoDB.setearParametro("@email",nuevo.email);
                 accesoDB.setearParametro("@password_hash", nuevo.password_hash);
                 accesoDB.setearParametro("@img_url", nuevo.img_url);
