@@ -94,10 +94,8 @@
                     <asp:Label ID="lblRol" CssClass="form-label profile-label" runat="server">Rol de usuario</asp:Label>
                     <asp:TextBox ID="txtbRol" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
                 </div>
-                <%if (rol == 2)
+                <%if ((int)Session["Rol"] == 2)
                     {%>
-                <asp:UpdatePanel runat="server">
-                    <ContentTemplate>
 
                         <div class="form-group">
                             <asp:Label ID="lblNombre" CssClass="form-label profile-label" runat="server">Nombre</asp:Label>
@@ -111,8 +109,6 @@
                             <asp:Label ID="lblNacimiento" CssClass="form-label profile-label" runat="server">Fecha de nacimiento</asp:Label>
                             <asp:TextBox runat="server" ID="txtbNacimiento" CssClass="form-control" Enabled="false" />
                         </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
                 <%}%>
                 <div class="form-group">
                     <asp:Label ID="lblImagen" CssClass="form-label profile-label" runat="server">Imagen de perfil</asp:Label>
@@ -125,13 +121,9 @@
             </div>
         </div>
         <div class="row btn-container">
-            <asp:UpdatePanel runat="server">
-                <ContentTemplate>
                     <asp:Button Text="Editar Perfil" runat="server" ID="btnEditar" CssClass="btn-custom" OnClick="btnEditar_Click" />
                     <asp:Button ID="btnGuardar" runat="server" CssClass="btn-custom" Text="Guardar cambios" OnClick="btnGuardar_Click" Visible="false" />
                     <asp:Button ID="btnSalir" runat="server" CssClass="btn-custom" Text="Volver" OnClick="btnSalir_Click" />
-                </ContentTemplate>
-            </asp:UpdatePanel>
             <div class="col-md-12">
             </div>
         </div>

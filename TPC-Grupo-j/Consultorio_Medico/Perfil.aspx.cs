@@ -13,7 +13,6 @@ namespace Consultorio_Medico
 {
     public partial class Perfil : System.Web.UI.Page
     {
-        protected int rol { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -21,15 +20,14 @@ namespace Consultorio_Medico
                 if (!IsPostBack)
                 {
                     Session.Add("editable", false);
-                    rol = Session["Rol"] != null ? (int)Session["Rol"] : -1;
-                    System.Diagnostics.Debug.WriteLine(rol);
+                    System.Diagnostics.Debug.WriteLine("TIPO DE ROL:" + Session["Rol"] != null ? Session["Rol"].ToString() : "NULL");
 
                     if (Seguridad.ValidarUsuario(Session["usuario"]))
                     {
                         Usuario user = (Usuario)Session["usuario"];
                         string imagePath = Server.MapPath("~/Images/img_perfil/" + user.img_url);
                         RecNegocio negocio_rec = new RecNegocio();
-                        switch (rol)
+                        switch ((int)Session["Rol"])
                         {
                             case 1:
                                 txtbEmail.Text = user.email;
