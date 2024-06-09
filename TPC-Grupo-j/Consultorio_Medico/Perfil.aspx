@@ -90,7 +90,7 @@
                     <asp:Label ID="lblRol" CssClass="form-label profile-label" runat="server">Rol de usuario</asp:Label>
                     <asp:TextBox ID="txtbRol" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
                 </div>
-                <%if (rol == 2)
+                <%if (rol == 2 )
                     {%>
                 <div class="form-group">
                     <asp:Label ID="lblNombre" CssClass="form-label profile-label" runat="server">Nombre</asp:Label>
