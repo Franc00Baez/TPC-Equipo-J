@@ -20,7 +20,6 @@ namespace Consultorio_Medico
                     Response.Redirect("Default.aspx");
             }
 
-
             if (Page is Perfil)
             {
                 if (!Seguridad.ValidarUsuario(Session["usuario"]))
@@ -45,6 +44,7 @@ namespace Consultorio_Medico
             {
                 imgAvatar.ImageUrl = "..//resources//avatar.png";
             }
+
         }
 
         protected void btnLogOut_Click(object sender, EventArgs e)

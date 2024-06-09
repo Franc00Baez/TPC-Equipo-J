@@ -91,9 +91,11 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="Especialidades.aspx">Especialidades</a>
                         </li>
+                        <%if (Session["Rol"] != null && (int)Session["Rol"] == 1){ %>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="AdmUsuarios.aspx">Administrar usuarios</a>
+                            <a class="nav-link" aria-current="page" href="AdmUsuarios.aspx" id="nav-admUsu">Administrar usuarios</a>
                         </li>
+                        <%}%>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="#Nosotros">Nosotros</a>
                         </li>

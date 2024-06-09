@@ -76,6 +76,8 @@
         <asp:FileUpload ID="fuImg" runat="server" CssClass="form-control" />
         <div class="btn-container">
             <asp:Button ID="btnCrear" runat="server" Text="Crear" CssClass="btn-custom" OnClick="btnCrear_Click" />
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn-custom" OnClick="btnVolver_Click"/>
+
         </div>
         <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
     </div>

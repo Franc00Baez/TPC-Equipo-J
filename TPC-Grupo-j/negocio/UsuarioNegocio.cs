@@ -12,6 +12,41 @@ namespace negocio
 {
     public class UsuarioNegocio
     {
+        public List<Usuario> listar()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDB accesoDB = new AccesoDB();
+
+            try
+            {
+                accesoDB.setearQuery("SELECT id, email, password_hash, id_rol, img_url, fecha_creacion, activo FROM USUARIOS");
+                accesoDB.ejectuarLectura();
+
+                while (accesoDB.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+                    aux.id = accesoDB.Lector.GetInt32(0);
+                    aux.email = accesoDB.Lector.IsDBNull(1) ? string.Empty : accesoDB.Lector.GetString(1);
+                    aux.password_hash = accesoDB.Lector.IsDBNull(2) ? string.Empty : accesoDB.Lector.GetString(2);
+                    aux.rol_type = (UserRole)accesoDB.Lector.GetInt32(3);
+                    aux.img_url = accesoDB.Lector.IsDBNull(4) ? string.Empty : accesoDB.Lector.GetString(4);
+                    aux.fecha_creacion = accesoDB.Lector.GetDateTime(5);
+                    aux.activo = accesoDB.Lector.GetBoolean(6);
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la DB: " + ex.Message);
+            }
+            finally
+            {
+                accesoDB.cerrarConexion();
+            }
+        }
+
         public int insertarNuevo(Usuario nuevo)
         {
             AccesoDB accesoDB = new AccesoDB();
