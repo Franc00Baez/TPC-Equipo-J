@@ -78,13 +78,13 @@ namespace Consultorio_Medico
         protected global::System.Web.UI.WebControls.Label lblNombre;
 
         /// <summary>
-        /// Control txtNombre.
+        /// Control txtbNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+        protected global::System.Web.UI.WebControls.TextBox txtbNombre;
 
         /// <summary>
         /// Control lblApellido.
@@ -96,13 +96,13 @@ namespace Consultorio_Medico
         protected global::System.Web.UI.WebControls.Label lblApellido;
 
         /// <summary>
-        /// Control txtApellido.
+        /// Control txtbApellido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApellido;
+        protected global::System.Web.UI.WebControls.TextBox txtbApellido;
 
         /// <summary>
         /// Control lblNacimiento.
@@ -114,13 +114,13 @@ namespace Consultorio_Medico
         protected global::System.Web.UI.WebControls.Label lblNacimiento;
 
         /// <summary>
-        /// Control txtNacimiento.
+        /// Control txtbNacimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNacimiento;
+        protected global::System.Web.UI.WebControls.TextBox txtbNacimiento;
 
         /// <summary>
         /// Control lblImagen.
@@ -148,6 +148,15 @@ namespace Consultorio_Medico
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgPerfil;
+
+        /// <summary>
+        /// Control btnEditar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEditar;
 
         /// <summary>
         /// Control btnGuardar.

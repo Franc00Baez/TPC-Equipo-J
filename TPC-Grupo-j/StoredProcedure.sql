@@ -105,3 +105,44 @@ BEGIN
     WHERE usuario_id = @usuario_id;
 
 END;
+CREATE PROCEDURE sp_ActualizarUsuarioYRecepcionista(
+    @id INT,
+    @email VARCHAR(70),
+    @pass VARCHAR(200),
+    @img_Url VARCHAR(200),
+    @idRol INT,
+    @activo BIT,
+    @nombre VARCHAR(100),
+	@appellido VARCHAR(100),
+	@nacimiento DATE)
+AS
+BEGIN
+    -- Iniciar una transacción
+    BEGIN TRANSACTION
+
+    -- Actualizar los datos del usuario
+    UPDATE USUARIOS
+    SET email = @email,
+        password_hash = @pass,
+        img_url = @img_Url,
+        id_rol = @idRol,
+        activo = @activo
+    WHERE id = @id
+
+    -- Actualizar los datos del recepcionista
+    UPDATE RECEPCIONISTAS
+    SET nombre = @nombre,
+		apellido = @appellido,
+        nacimiento = @nacimiento
+    WHERE usuario_id = @id
+
+    -- Comprobar si se realizaron ambas actualizaciones correctamente
+    IF @@ERROR = 0
+    BEGIN
+        COMMIT TRANSACTION -- Confirmar la transacción si no hay errores
+    END
+    ELSE
+    BEGIN
+        ROLLBACK TRANSACTION -- Deshacer la transacción si hay errores
+    END
+END

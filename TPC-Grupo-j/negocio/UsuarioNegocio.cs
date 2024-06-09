@@ -57,6 +57,7 @@ namespace negocio
                 accesoDB.cerrarConexion();
             }
         }
+        
         public Usuario BuscarUsuarioPorId(int id)
         {
             Usuario user = new Usuario();

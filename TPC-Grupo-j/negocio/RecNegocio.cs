@@ -10,6 +10,34 @@ namespace negocio
 {
     public class RecNegocio
     {
+        public void actualizar(Recepcionista recepcionista)
+        {
+            AccesoDB datos = new AccesoDB();
+            try
+            {
+                datos.setearQuerySP("sp_ActualizarUsuarioYRecepcionista");
+                datos.setearParametro("@id", recepcionista.id);
+                datos.setearParametro("@email", recepcionista.email);
+                datos.setearParametro("@pass", recepcionista.password_hash);
+                datos.setearParametro("@img_Url", recepcionista.img_url);
+                datos.setearParametro("@idRol", (int)recepcionista.rol_type);
+                datos.setearParametro("@activo", recepcionista.activo);
+                datos.setearParametro("@nombre", recepcionista.nombre);
+                datos.setearParametro("@apellido", recepcionista.apellido);
+                datos.setearParametro("@nacimiento", recepcionista.nacimiento);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void registrarRecepcionista(Usuario user)
         {
             AccesoDB datos = new AccesoDB();
@@ -45,7 +73,7 @@ namespace negocio
                 {
                     recepcionista.id = (int)datos.Lector["id"];
                     recepcionista.nombre = datos.Lector["nombre"] != DBNull.Value ? datos.Lector["nombre"].ToString() : "";
-                    recepcionista.apellido = datos.Lector["apellido"] != DBNull.Value ? datos.Lector["nombre"].ToString() : "";
+                    recepcionista.apellido = datos.Lector["apellido"] != DBNull.Value ? datos.Lector["apellido"].ToString() : "";
                     recepcionista.nacimiento = datos.Lector["nacimiento"] != DBNull.Value ? (DateTime)datos.Lector["nacimiento"] : DateTime.MinValue;
 
                     return recepcionista;
