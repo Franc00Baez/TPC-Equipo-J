@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="AdmPacientes.aspx" />
     <Content Include="AdmUsuarios.aspx" />
+    <Content Include="CreacionPaciente.aspx" />
     <Content Include="CreacionUsuario.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Especialidades.aspx" />
@@ -94,6 +95,13 @@
     </Compile>
     <Compile Include="AdmUsuarios.aspx.designer.cs">
       <DependentUpon>AdmUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreacionPaciente.aspx.cs">
+      <DependentUpon>CreacionPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreacionPaciente.aspx.designer.cs">
+      <DependentUpon>CreacionPaciente.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreacionUsuario.aspx.cs">
       <DependentUpon>CreacionUsuario.aspx</DependentUpon>

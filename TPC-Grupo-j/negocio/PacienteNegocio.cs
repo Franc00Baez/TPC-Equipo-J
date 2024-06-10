@@ -46,19 +46,20 @@ namespace negocio
                 accesoDB.cerrarConexion();
             }
         }
-        /*
-        public int insertarNuevo(Usuario nuevo)
+        
+        public void insertarNuevo(Paciente nuevo)
         {
             AccesoDB accesoDB = new AccesoDB();
             try
             {
-                accesoDB.setearQuerySP("sp_InsertarNuevo");
+                accesoDB.setearQuery("INSERT INTO PACIENTES (nombre, apellido, email, telefono, nacimiento, dni, activo) values (@nombre, @apellido, @email, @telefono, @nacimiento, @dni, 1);");
+                accesoDB.setearParametro("@nombre", nuevo.nombre);
+                accesoDB.setearParametro("@apellido", nuevo.apellido);
                 accesoDB.setearParametro("@email", nuevo.email);
-                accesoDB.setearParametro("@password_hash", nuevo.password_hash);
-                accesoDB.setearParametro("@img_url", nuevo.img_url);
-                accesoDB.setearParametro("@fecha_creacion", nuevo.fecha_creacion);
-                accesoDB.setearParametro("@activo", 1);
-                return accesoDB.ejecutarAccionScalar();
+                accesoDB.setearParametro("@telefono", nuevo.telefono);
+                accesoDB.setearParametro("@nacimiento", nuevo.nacimiento);
+                accesoDB.setearParametro("@dni", nuevo.dni);
+                accesoDB.ejecutarAccion();
             }
             catch (Exception ex)
             {
@@ -69,9 +70,9 @@ namespace negocio
             {
                 accesoDB.cerrarConexion();
             }
-            return 0;
         }
 
+        /*
         public void actualizar(Usuario usuario)
         {
             AccesoDB accesoDB = new AccesoDB();
