@@ -50,7 +50,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <div class="table-title">Listado de pacientes</div>
-    <asp:GridView ID="dgv2" CssClass="table table-bordered" runat="server"  AutoGenerateColumns="false">
+    <asp:GridView ID="dgv" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false" DataKeyNames="id" OnSelectedIndexChanged="dgv_SelectedIndexChanged">
         <Columns>
                 <asp:BoundField DataField="id" HeaderText="ID" />
                 <asp:BoundField DataField="nombre" HeaderText="Nombre" />
@@ -64,6 +64,7 @@
                 </asp:TemplateField>
                 <asp:BoundField DataField="dni" HeaderText="DNI"/>
                 <asp:CheckBoxField DataField="activo" HeaderText="Estado" />
+                <asp:CommandField ShowSelectButton="true" HeaderText="Editar" />
             </Columns>
     </asp:GridView>
      <div style="text-align: center;">

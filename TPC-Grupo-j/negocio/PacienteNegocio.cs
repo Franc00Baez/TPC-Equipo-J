@@ -72,21 +72,28 @@ namespace negocio
             }
         }
 
-        /*
-        public void actualizar(Usuario usuario)
+
+        public void actualizar(Paciente paciente)
         {
             AccesoDB accesoDB = new AccesoDB();
             try
             {
-                accesoDB.setearQuery("Update USUARIOS set img_url = @imagen WHERE id = @id");
-                accesoDB.setearParametro("@imagen", usuario.img_url);
-                accesoDB.setearParametro("@id", usuario.id);
-                accesoDB.ejecutarAccion();
+                    accesoDB.setearQuery("UPDATE PACIENTES SET nombre = @nombre, apellido = @apellido, email = @email, telefono = @telefono, nacimiento = @nacimiento, dni = @dni, activo = @activo WHERE id = @id;");
+                    accesoDB.setearParametro("@nombre", paciente.nombre);
+                    accesoDB.setearParametro("@apellido", paciente.apellido);
+                    accesoDB.setearParametro("@email", paciente.email);
+                    accesoDB.setearParametro("@telefono", paciente.telefono);
+                    accesoDB.setearParametro("@nacimiento", paciente.nacimiento);
+                    accesoDB.setearParametro("@dni", paciente.dni);
+                    accesoDB.setearParametro("@activo", paciente.activo);
+                    accesoDB.setearParametro("@id", paciente.id);
+
+                    accesoDB.ejecutarAccion();              
             }
             catch (Exception ex)
             {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
                 throw ex;
-
             }
             finally
             {
@@ -94,6 +101,7 @@ namespace negocio
             }
         }
 
+        /*
         public Usuario BuscarUsuarioPorId(int id)
         {
             Usuario user = new Usuario();
