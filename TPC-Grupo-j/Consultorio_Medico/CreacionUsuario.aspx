@@ -58,25 +58,28 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager runat="server"></asp:ScriptManager>
     <div class="form-container">
         <div class="form-title">Crear Usuario</div>
-        <asp:DropDownList ID="ddlUserRole" runat="server" CssClass="form-control">
-            <asp:ListItem Text="Seleccionar Rol" Value=""></asp:ListItem>
-            <asp:ListItem Text="Especialista" Value="Especialista"></asp:ListItem>
-            <asp:ListItem Text="Recepcionista" Value="Recepcionista"></asp:ListItem>
-        </asp:DropDownList>
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <asp:DropDownList ID="ddlUserRole" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlUserRole_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" Placeholder="Nombre"></asp:TextBox>
+                <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" Placeholder="Apellido"></asp:TextBox>
+                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" Placeholder="Correo Electrónico"></asp:TextBox>
+                <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" Placeholder="Contraseña"></asp:TextBox>
+                <asp:TextBox ID="txtFechaNac" runat="server" CssClass="form-control" Placeholder="Fecha de Nacimiento (dd/mm/yyyy)"></asp:TextBox>
+                <div class="d-block">
+                <asp:CheckBoxList runat="server" ID="cblEspecialidades" CssClass="form-check"></asp:CheckBoxList>
+                </div>
+                <label for="fuImg" class="form-label">Cargar Imagen</label>
+                <asp:FileUpload ID="fuImg" runat="server" CssClass="form-control" />
 
-        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" Placeholder="Nombre"></asp:TextBox>
-        <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" Placeholder="Apellido"></asp:TextBox>
-        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" Placeholder="Correo Electrónico"></asp:TextBox>
-        <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" Placeholder="Contraseña"></asp:TextBox>
-        <asp:TextBox ID="txtFechaNac" runat="server" CssClass="form-control" Placeholder="Fecha de Nacimiento (dd/mm/yyyy)"></asp:TextBox>
-
-        <label for="fuImg" class="form-label">Cargar Imagen</label>
-        <asp:FileUpload ID="fuImg" runat="server" CssClass="form-control" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
         <div class="btn-container">
             <asp:Button ID="btnCrear" runat="server" Text="Crear" CssClass="btn-custom" OnClick="btnCrear_Click" />
-            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn-custom" OnClick="btnVolver_Click"/>
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn-custom" OnClick="btnVolver_Click" />
 
         </div>
         <asp:Label ID="lblError" runat="server" Text=""></asp:Label>

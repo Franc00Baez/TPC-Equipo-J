@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.WebControls;
 
 namespace negocio
 {
@@ -157,6 +158,37 @@ namespace negocio
                 return false;
             }
             finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public List<ListItem> ListarRoles()
+        {
+            AccesoDB datos = new AccesoDB();
+            List<ListItem> roles = new List<ListItem>();
+
+            try
+            {
+                datos.setearQuery("SELECT * FROM ROLES");
+                datos.ejectuarLectura();
+
+                while(datos.Lector.Read())
+                {
+                    roles.Add(new ListItem
+                    {
+                        Text = datos.Lector["rol_name"].ToString(),
+                        Value = datos.Lector["id"].ToString()
+                    });
+                }
+                roles.Insert(0, new ListItem("-- Seleccione un rol --", "0"));
+                return roles;
+
+            }catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                return roles;
+            }finally
             {
                 datos.cerrarConexion();
             }

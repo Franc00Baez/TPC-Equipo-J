@@ -20,7 +20,6 @@ namespace Consultorio_Medico
                 if (!IsPostBack)
                 {
                     Session.Add("editable", false);
-                    System.Diagnostics.Debug.WriteLine("TIPO DE ROL:" + Session["Rol"] != null ? Session["Rol"].ToString() : "NULL");
 
                     if (Seguridad.ValidarUsuario(Session["usuario"]))
                     {
@@ -95,6 +94,8 @@ namespace Consultorio_Medico
                         recepcionista.nombre = txtbNombre.Text;
                         recepcionista.apellido = txtbApellido.Text;
                         recepcionista.nacimiento = DateTime.Parse(txtbNacimiento.Text);
+                        System.Diagnostics.Debug.WriteLine("IMG: " + recepcionista.img_url);
+
                         recepcionistaNegocio.actualizar(recepcionista);
                         break;
                     case UserRole.Null:
