@@ -1,40 +1,38 @@
-﻿using negocio;
+﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using dominio;
 
 namespace Consultorio_Medico
 {
-    public partial class AdmPacientes : System.Web.UI.Page
+    public partial class AdmMedicos : System.Web.UI.Page
     {
-        public List<Paciente> listaPacientes { get; set; }
-
+        public List<Medico> listaMedicos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                cargarPacientes();
+                cargarMedicos();
             }
         }
-
-        private void cargarPacientes()
+        private void cargarMedicos()
         {
-            PacienteNegocio negocio = new PacienteNegocio();
-            listaPacientes = negocio.listar();
-            Session["listaPacientes"] = listaPacientes;
+            MedNegocio negocio = new MedNegocio();
+            listaMedicos = negocio.listar();
+            Session["listaMedicos"] = listaMedicos;
 
-            dgv.DataSource = listaPacientes;
+            dgv.DataSource = listaMedicos;
             dgv.DataBind();
         }
 
         protected void dgv_SelectedIndexChanged(object sender, EventArgs e)
         {
             var id = dgv.SelectedDataKey.Value.ToString();
-            Response.Redirect("CreacionPaciente.aspx?id=" + id);
+            Response.Redirect("CreacionMedico.aspx?id=" + id);
         }
     }
 }
