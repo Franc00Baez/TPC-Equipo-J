@@ -49,7 +49,7 @@ namespace negocio
             AccesoDB accesoDB = new AccesoDB();
             try
             {
-                accesoDB.setearQuery("INSERT INTO PACIENTES (nombre, apellido, nacimiento) values (@nombre, @apellido, @nacimiento);");
+                accesoDB.setearQuery("INSERT INTO DOCTORES (nombre, apellido, nacimiento) values (@nombre, @apellido, @nacimiento);");
                 accesoDB.setearParametro("@nombre", nuevo.nombre);
                 accesoDB.setearParametro("@apellido", nuevo.apellido);
                 accesoDB.setearParametro("@nacimiento", nuevo.nacimiento);
@@ -74,7 +74,7 @@ namespace negocio
             AccesoDB accesoDB = new AccesoDB();
             try
             {
-                accesoDB.setearQuery("UPDATE PACIENTES SET nombre = @nombre, apellido = @apellido,nacimiento = @nacimiento WHERE id = @id;");
+                accesoDB.setearQuery("UPDATE DOCTORES SET nombre = @nombre, apellido = @apellido,nacimiento = @nacimiento WHERE id = @id;");
                 accesoDB.setearParametro("@nombre", actualizado.nombre);
                 accesoDB.setearParametro("@apellido", actualizado.apellido);
                 accesoDB.setearParametro("@nacimiento", actualizado.nacimiento);
