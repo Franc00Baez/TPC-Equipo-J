@@ -55,7 +55,7 @@ namespace Consultorio_Medico
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            MedNegocio medicoNegocio = new MedNegocio();
+            MedicoNegocio medicoNegocio = new MedicoNegocio();
             try
             {
                 string nombre = txtNombre.Text;

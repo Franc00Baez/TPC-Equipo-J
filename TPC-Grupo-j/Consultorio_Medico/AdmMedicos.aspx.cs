@@ -21,7 +21,7 @@ namespace Consultorio_Medico
         }
         private void cargarMedicos()
         {
-            MedNegocio negocio = new MedNegocio();
+            MedicoNegocio negocio = new MedicoNegocio();
             listaMedicos = negocio.listar();
             Session["listaMedicos"] = listaMedicos;
 

@@ -18,7 +18,6 @@ namespace dominio
             this.rol_type = user.rol_type;
             this.activo = user.activo;
         }
-        public int id { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
         public DateTime nacimiento { get; set; }

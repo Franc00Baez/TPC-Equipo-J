@@ -33,11 +33,38 @@ namespace negocio
             catch (Exception ex)
             {
 
-                throw new Exception("Hay un error en la DB" + ex.Message);
+                Seguridad.ManejarExcepcion(ex, System.Web.HttpContext.Current);
+                return lista;
             }
             finally
             {
                 accesoDB.cerrarConexion();
+            }
+        }
+
+        public bool AgregarEspecialidad(string nueva)
+        {
+            AccesoDB datos = new AccesoDB();
+
+            try
+            {
+                datos.setearQuerySP("sp_InsertarEspecialidad");
+                datos.setearParametro("@especialidad_name", nueva);
+                datos.setearParametroSalida("@resultado", System.Data.SqlDbType.Bit);
+
+                datos.ejecutarAccion();
+
+                return (bool)datos.obtenerParametroSalida("@resultado");
+
+            }
+            catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, System.Web.HttpContext.Current);
+                return false;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
     }

@@ -35,7 +35,7 @@ namespace negocio
             contexto.Session["Errores"] = errores;
 
             //Redirigimos a la página de error
-            contexto.Response.Redirect("~/Error.aspx");
+            contexto.Response.Redirect("~/Error.aspx", false);
         }
     }
 }

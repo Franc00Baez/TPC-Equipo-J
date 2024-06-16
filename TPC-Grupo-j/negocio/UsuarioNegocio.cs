@@ -50,16 +50,23 @@ namespace negocio
 
         public int insertarNuevo(Usuario nuevo)
         {
-            AccesoDB accesoDB = new AccesoDB();
+            AccesoDB datos = new AccesoDB();
+            Login login = new Login();
+            HashService servicio = new HashService();
             try
             {
-                accesoDB.setearQuerySP("sp_InsertarNuevo");
-                accesoDB.setearParametro("@email",nuevo.email);
-                accesoDB.setearParametro("@password_hash", nuevo.password_hash);
-                accesoDB.setearParametro("@img_url", nuevo.img_url);
-                accesoDB.setearParametro("@fecha_creacion",nuevo.fecha_creacion);
-                accesoDB.setearParametro("@activo", 1);
-                return accesoDB.ejecutarAccionScalar();
+                if(login.ValidarUsuario(nuevo.email, nuevo.password_hash) == -1)
+                {
+                    datos.setearQuerySP("sp_InsertarNuevo");
+                    datos.setearParametro("@email", nuevo.email);
+                    datos.setearParametro("@password_hash", servicio.HashPassword(nuevo.password_hash));
+                    datos.setearParametro("@img_url", string.IsNullOrEmpty(nuevo.img_url) ? (object)DBNull.Value : nuevo.img_url);
+                    datos.setearParametro("@id_rol", (int)nuevo.rol_type);
+                    datos.setearParametro("@fecha_creacion", DateTime.Now);
+                    datos.setearParametro("@activo", 1);
+                    return datos.ejecutarAccionScalar();
+                }
+                return -1;
             }
             catch (Exception ex)
             {
@@ -68,20 +75,20 @@ namespace negocio
             }
             finally
             {
-                accesoDB.cerrarConexion();
+                datos.cerrarConexion();
             }
             return 0;
         }
 
         public void actualizar( Usuario usuario)
         {
-                AccesoDB accesoDB = new AccesoDB();
+                AccesoDB datos = new AccesoDB();
             try
             {
-                accesoDB.setearQuery("Update USUARIOS set img_url = @imagen WHERE id = @id");
-                accesoDB.setearParametro("@imagen", usuario.img_url);
-                accesoDB.setearParametro("@id", usuario.id);
-                accesoDB.ejecutarAccion();
+                datos.setearQuery("Update USUARIOS set img_url = @imagen WHERE id = @id");
+                datos.setearParametro("@imagen", usuario.img_url);
+                datos.setearParametro("@id", usuario.id);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
@@ -90,7 +97,7 @@ namespace negocio
             }
             finally
             {
-                accesoDB.cerrarConexion();
+                datos.cerrarConexion();
             }
         }
         
@@ -129,39 +136,6 @@ namespace negocio
             }
         }
 
-        public bool Login(Usuario usuario)
-        {
-            AccesoDB datos = new AccesoDB();
-            try
-            {
-                datos.setearQuery("Select id, email, password_hash,img_url,id_rol,fecha_creacion from USUARIOS Where email = @email AND password_hash = @pass");
-                datos.setearParametro("@email", usuario.email);
-                datos.setearParametro("@pass", usuario.password_hash);
-                datos.ejectuarLectura();
-                if (datos.Lector.Read())
-                {
-                    usuario.id = (int)datos.Lector["id"];
-                    usuario.rol_type =(UserRole)datos.Lector["id_rol"];
-                    if (!(datos.Lector["imagenPerfil"] is DBNull))
-                        usuario.img_url = (string)datos.Lector["img_url"];
-                    if (!(datos.Lector["fechaNacimiento"] is DBNull))
-                        usuario.fecha_creacion = DateTime.Parse(datos.Lector["fecha_creacion"].ToString());
-
-                    return true;
-                }
-                return false;
-
-            }
-            catch (Exception ex)
-            {
-                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
-                return false;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
 
         public List<ListItem> ListarRoles()
         {

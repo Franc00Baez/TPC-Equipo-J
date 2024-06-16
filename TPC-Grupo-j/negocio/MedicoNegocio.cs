@@ -8,7 +8,7 @@ using System.Web;
 
 namespace negocio
 {
-    public class MedNegocio
+    public class MedicoNegocio
     {
         public List<Medico> listar()
         {
@@ -24,7 +24,6 @@ namespace negocio
                 {
                     Medico aux = new Medico();
                     aux.id = accesoDB.Lector.GetInt32(0);
-                    aux.usuario_id = accesoDB.Lector.GetInt32(1);
                     aux.nombre = accesoDB.Lector.GetString(2);
                     aux.apellido = accesoDB.Lector.GetString(3);
                     aux.nacimiento = accesoDB.Lector.GetDateTime(4);
@@ -44,27 +43,81 @@ namespace negocio
             }
         }
 
-        public void insertarNuevo(Medico nuevo)
+        public int insertarNuevo(Medico nuevo)
         {
-            AccesoDB accesoDB = new AccesoDB();
+            AccesoDB datos = new AccesoDB();
             try
             {
-                accesoDB.setearQuery("INSERT INTO DOCTORES (nombre, apellido, nacimiento) values (@nombre, @apellido, @nacimiento);");
-                accesoDB.setearParametro("@nombre", nuevo.nombre);
-                accesoDB.setearParametro("@apellido", nuevo.apellido);
-                accesoDB.setearParametro("@nacimiento", nuevo.nacimiento);
-                accesoDB.ejecutarAccion();
+                datos.setearQuerySP("sp_InsertarMedico");
+                datos.setearParametro("@UsuarioID", nuevo.id);
+                datos.setearParametro("@Nombre", nuevo.nombre);
+                datos.setearParametro("@Apellido", nuevo.apellido);
+                datos.setearParametro("@Nacimiento", nuevo.nacimiento != null ? nuevo.nacimiento : DateTime.MaxValue);
+                datos.setearParametroSalida("@MedicoID", System.Data.SqlDbType.Int);
+
+                datos.ejecutarAccion();
+
+                return (int)datos.obtenerParametroSalida("@MedicoID");
             }
             catch (Exception ex)
             {
-
                 Seguridad.ManejarExcepcion(ex, HttpContext.Current);
-                throw ex;
-
+                return -1;
             }
             finally
             {
-                accesoDB.cerrarConexion();
+                datos.cerrarConexion();
+            }
+        }
+
+        public void InsertarEspecialidades(Medico nuevo, int id)
+        {
+            AccesoDB datos = new AccesoDB();
+
+            try
+            {
+                foreach (Especialidad especialidad in nuevo.especialidades)
+                {
+                    System.Diagnostics.Debug.WriteLine(especialidad.id + ": " + especialidad.nombre);
+                    datos.setearQuery("INSERT INTO ESPECIALIDADES_X_DOCTORES (doctor_id, especialidad_id) VALUES (@MedicoID, @EspecialidadID)");
+                    datos.setearParametro("@MedicoID", id);
+                    datos.setearParametro("@EspecialidadID", especialidad.id);
+                    datos.ejecutarAccion();
+                }
+
+            }catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+        public void InsertarTurnos(Medico nuevo, int id)
+        {
+            AccesoDB datos = new AccesoDB();
+            try
+            {
+                foreach (Horario horario in nuevo.Turnos.Values)
+                {
+                    System.Diagnostics.Debug.WriteLine(horario.ToString());
+                    datos.setearQuery("INSERT INTO TURNOS_DE_TRABAJO (doctor_id, dia, hora_inicio, hora_final) VALUES (@MedicoID, @Dia, @HoraInicio, @HoraFinal)");
+                    datos.setearParametro("@MedicoID", id);
+                    datos.setearParametro("@Dia", horario.Dia);
+                    datos.setearParametro("@HoraInicio", horario.HoraInicio);
+                    datos.setearParametro("@HoraFinal", horario.HoraFinal);
+                    datos.ejecutarAccion();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
+            }finally
+            {
+                datos.cerrarConexion();
             }
         }
 

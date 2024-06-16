@@ -6,13 +6,30 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    public class Medico
+    public class Medico : Usuario
     {
-        public int id { get; set; }
-        public int usuario_id { get; set; }
+        public Medico()
+        {
+            this.especialidades = new List<Especialidad>();
+            this.Turnos= new Dictionary<string, Horario>();
+        }
+        public Medico(Usuario user)
+        {
+            this.id = user.id;
+            this.email = user.email;
+            this.password_hash = user.password_hash;
+            this.img_url = user.img_url;
+            this.fecha_creacion = user.fecha_creacion;
+            this.rol_type = user.rol_type;
+            this.activo = user.activo;
+            this.especialidades = new List<Especialidad>();
+            this.Turnos = new Dictionary<string, Horario>();
+        }
         public string nombre { get; set; }
         public string apellido { get; set; }
         public DateTime nacimiento { get; set; }
         public List<Especialidad> especialidades { get; set; }
+        public Dictionary<string, Horario> Turnos { get; set; }
+
     }
 }

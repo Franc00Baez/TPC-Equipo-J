@@ -1,6 +1,5 @@
 ﻿USE CONSULTORIODB
 GO
-
 --Registra un nuevo usuario y devuelve si se pudo insertar en la DB.
 create proc sp_RegistrarUsuario(
 @email varchar(70),
@@ -23,7 +22,7 @@ begin
 		set @registrado = 0
 	end
 end;
-
+GO
 --Valida que el usuario se encuentre en la DB, de ser asi devuelve el id del usuario
 --de lo contrario devuelve 0.
 create proc sp_ValidarUsuario(
@@ -44,6 +43,7 @@ AS
 BEGIN
     SELECT id, password_hash FROM USUARIOS WHERE email = @Email
 END
+GO
 --Inserta nuevo usuario en la Tabla de Usuarios
 CREATE PROCEDURE sp_InsertarNuevo
     @Email VARCHAR(70),
@@ -73,7 +73,7 @@ BEGIN
     FROM USUARIOS
     WHERE id = @usuario_id;
 END;
-
+GO
 CREATE PROCEDURE sp_InsertarRecepcionista
 (
     @usuario_id INT,
@@ -105,6 +105,7 @@ BEGIN
     WHERE usuario_id = @usuario_id;
 
 END;
+GO
 CREATE PROCEDURE sp_ActualizarUsuarioYRecepcionista(
     @id INT,
     @email VARCHAR(70),
@@ -146,3 +147,45 @@ BEGIN
         ROLLBACK TRANSACTION -- Deshacer la transacción si hay errores
     END
 END
+GO
+CREATE PROCEDURE sp_InsertarEspecialidad
+    @especialidad_name NVARCHAR(255),
+    @resultado BIT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @exists BIT;
+
+    -- Verificar si la especialidad ya existe
+    SELECT @exists = CASE WHEN EXISTS (SELECT 1 FROM ESPECIALIDADES WHERE especialidad_name = @especialidad_name) THEN 1 ELSE 0 END;
+
+    IF @exists = 0
+    BEGIN
+        -- Insertar la especialidad si no existe
+        INSERT INTO ESPECIALIDADES (especialidad_name) VALUES (@especialidad_name);
+        SET @resultado = 1; -- Devuelve true
+    END
+    ELSE
+    BEGIN
+        SET @resultado = 0; -- Devuelve false
+    END;
+END;
+GO
+CREATE PROCEDURE sp_InsertarMedico
+    @UsuarioID INT,
+    @Nombre VARCHAR(50),
+    @Apellido VARCHAR(50),
+    @Nacimiento DATE,
+    @MedicoID INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insertar el nuevo médico en la tabla DOCTORES
+    INSERT INTO DOCTORES (usuario_id, nombre, apellido, nacimiento)
+    VALUES (@UsuarioID, @Nombre, @Apellido, @Nacimiento);
+
+    -- Obtener el ID del médico recién insertado
+    SET @MedicoID = SCOPE_IDENTITY();
+END;
