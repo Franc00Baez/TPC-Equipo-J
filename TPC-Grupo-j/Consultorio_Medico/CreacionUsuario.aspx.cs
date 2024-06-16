@@ -127,6 +127,17 @@ namespace Consultorio_Medico
                         }
                         break;
                     case 3:
+                        user.email = txtEmail.Text;
+                        user.password_hash = txtPassword.Text;
+                        user.rol_type = UserRole.Recepcionista;
+                        user.id = negocio_usuario.insertarNuevo(user);
+                        if(user.id > 0)
+                        {
+                            Recepcionista recepcionista = new Recepcionista(user);
+                            negocio_recepcionista.registrarRecepcionista(recepcionista);
+                            Response.Redirect("AdmUsuarios.aspx", false);
+                        }
+
                         break;
 
                 }

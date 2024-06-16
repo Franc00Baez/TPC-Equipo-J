@@ -8,6 +8,10 @@ namespace dominio
 {
     public class Recepcionista : Usuario
     {
+        public Recepcionista()
+        {
+            this.id = 0;
+        }
         public Recepcionista(Usuario user )
         {
             this.id = user.id;

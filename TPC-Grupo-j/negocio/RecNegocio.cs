@@ -60,6 +60,29 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public void registrarRecepcionista(Recepcionista nuevo)
+        {
+            AccesoDB datos = new AccesoDB();
+            try
+            {
+                datos.setearQuerySP("sp_InsertarRecepcionista");
+                datos.setearParametro("@usuario_id", nuevo.id);
+                datos.setearParametro("@nombre", nuevo.nombre);
+                datos.setearParametro("@apellido", nuevo.apellido);
+                datos.setearParametro("@nacimiento", nuevo.nacimiento);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
+
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public Recepcionista buscarRecepcionista(Usuario user)
         {
             AccesoDB datos = new AccesoDB();
