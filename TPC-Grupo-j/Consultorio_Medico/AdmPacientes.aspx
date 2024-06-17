@@ -71,5 +71,4 @@
             <a href="CreacionPaciente.aspx" class="btn-create">Crear Paciente</a>
             <a href="Default.aspx" class="btn-create">Volver</a>
         </div>
-    </div>
 </asp:Content>
