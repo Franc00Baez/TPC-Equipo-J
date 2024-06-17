@@ -73,6 +73,7 @@
     <Content Include="CreacionMedico.aspx" />
     <Content Include="CreacionPaciente.aspx" />
     <Content Include="CreacionUsuario.aspx" />
+    <Content Include="EditarUsuario.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Especialidades.aspx" />
     <Content Include="Login.aspx" />
@@ -125,6 +126,13 @@
     </Compile>
     <Compile Include="CreacionUsuario.aspx.designer.cs">
       <DependentUpon>CreacionUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditarUsuario.aspx.cs">
+      <DependentUpon>EditarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditarUsuario.aspx.designer.cs">
+      <DependentUpon>EditarUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>

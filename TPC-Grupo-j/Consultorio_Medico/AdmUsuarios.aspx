@@ -46,6 +46,20 @@
             background-color: #88b090;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+        .btn-grid {
+            background-color: #a9d0b8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-grid:hover {
+            background-color: #88b090;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -55,11 +69,16 @@
               <Columns>
                 <asp:BoundField DataField="id" HeaderText="ID" />
                 <asp:BoundField DataField="email" HeaderText="Email" />
-                <asp:BoundField DataField="password_hash" HeaderText="Password"/>
+                <asp:BoundField DataField="password_hash" HeaderText="Password" Visible="false"/>
                 <asp:BoundField DataField="rol_type" HeaderText="Rol" />
                 <asp:BoundField DataField="img_url" HeaderText="Imagen" />
-                <asp:BoundField DataField="fecha_creacion" HeaderText="Fecha de Creación"/>
+                <asp:BoundField DataField="fecha_creacion" HeaderText="Fecha de Creación" />
                 <asp:CheckBoxField DataField="activo" HeaderText="Estado" />
+                 <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Button ID="btnEditar" runat="server" Text="Editar" CssClass="btn-grid" CommandName="Edit" CommandArgument='<%# Eval("id") + ";" + Eval("rol_type") %>'  />
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
         <div style="text-align: center;">
