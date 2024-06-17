@@ -101,6 +101,22 @@ namespace negocio
             }
         }
 
+        public void eliminar(int id)
+        {
+            try
+            {
+                AccesoDB datos = new AccesoDB();
+                datos.setearQuery("delete FROM PACIENTES where id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         /*
         public Usuario BuscarUsuarioPorId(int id)
         {

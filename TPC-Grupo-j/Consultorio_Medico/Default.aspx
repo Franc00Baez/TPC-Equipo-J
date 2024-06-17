@@ -1,21 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Consultorio_Medico.Home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-       <style>
+    <style>
         .content-container {
             padding: 20px;
         }
+
         .carousel-inner img {
             height: 500px;
             object-fit: cover;
         }
+
         .text-content {
             margin-top: 20px;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <div class="container content-container">
+    <div class="container content-container">
         <h1 class="text-center mb-4">Bienvenido</h1>
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -43,8 +45,17 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+        <%if (Session["Rol"] != null && (int)Session["Rol"] == 2)
+            { %>
         <div class="text-content">
             <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que también ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenían pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>
         </div>
+        <%}%>
+        <%if (Session["Rol"] != null && (int)Session["Rol"] == 3)
+            { %>
+        <div class="text-content">
+            <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que también ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenían pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>
+        </div>
+        <%}%>
     </div>
 </asp:Content>
