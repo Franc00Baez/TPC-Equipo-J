@@ -156,6 +156,8 @@ namespace negocio
                 datos.setearQuery("select id, usuario_id, nombre, apellido, nacimiento from DOCTORES where usuario_id = @id");
                 datos.setearParametro("@id", usuario_id);
 
+                datos.ejectuarLectura();
+
                 if(datos.Lector.Read())
                 {
                     medico.id_medico = (int)datos.Lector["id"];
@@ -191,8 +193,8 @@ namespace negocio
             {
                 datos.setearQuerySP("sp_GetEspecialidadesPorDoctor");
                 datos.setearParametro("@id", id_medico);
-
-                while(datos.Lector.Read())
+                datos.ejectuarLectura();
+                while (datos.Lector.Read())
                 {
                     especialidad.id = (int)datos.Lector["especialidad_id"];
                     especialidad.nombre = datos.Lector["nombre_especialidad"].ToString();
@@ -223,8 +225,8 @@ namespace negocio
             {
                 datos.setearQuery("SELECT dia, hora_inicio, hora_final FROM TURNOS_DE_TRABAJO WHERE doctor_id = @DoctorId;");
                 datos.setearParametro("@DoctorId", doctor_id);
-
-                while(datos.Lector.Read())
+                datos.ejectuarLectura();
+                while (datos.Lector.Read())
                 {
                     horario.Dia = datos.Lector["dia"].ToString();
                     horario.HoraInicio = TimeSpan.Parse(datos.Lector["hora_inicio"].ToString());

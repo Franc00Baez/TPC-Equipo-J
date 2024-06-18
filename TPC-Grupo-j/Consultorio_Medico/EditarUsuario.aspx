@@ -63,8 +63,8 @@
             <asp:TextBox ID="txtbApellido" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
         <div class="mb-3">
-            <asp:label text="Fecha de nacimiento:"  runat="server" CssClass="form-control" id="lblNacimiento" />
-            <asp:TextBox ID="txtbNacimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+            <asp:label text="Fecha de nacimiento:"  runat="server" CssClass="form-label" id="lblNacimiento" />
+            <asp:TextBox ID="txtbNacimiento" runat="server" CssClass="form-control" ></asp:TextBox>
         </div>
         <%} %>
 

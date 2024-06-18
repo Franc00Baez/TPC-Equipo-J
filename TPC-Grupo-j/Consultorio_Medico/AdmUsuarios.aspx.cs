@@ -24,7 +24,7 @@ namespace Consultorio_Medico
             Button btn = (Button)sender;
             string id = btn.CommandArgument;
 
-            Response.Redirect("EditarUsuario.aspx?id=" + id);
+            Response.Redirect("EditarUsuario.aspx?id=" + id, false);
         }
     }
 }

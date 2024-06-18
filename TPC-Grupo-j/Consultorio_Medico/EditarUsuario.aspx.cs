@@ -41,7 +41,7 @@ namespace Consultorio_Medico
                         case UserRole.Recepcionista:
                             RecNegocio negocio_recepcionista = new RecNegocio();
                             Recepcionista recepcionista = new Recepcionista(user);
-
+                            recepcionista = negocio_recepcionista.buscarRecepcionista(user);
                             txtbEmail.Text = recepcionista.email;
                             txtbPassword.Text = recepcionista.password_hash;
                             txtbFechaCreacion.Text = recepcionista.fecha_creacion.ToString();
@@ -63,13 +63,13 @@ namespace Consultorio_Medico
                             medico.especialidades = negocio_medico.getEspecialidadesPorMedico(medico.id_medico);
                             medico.Turnos = negocio_medico.getHorariosPorDoctor(medico.id_medico);
 
-                            txtbEmail.Text = medico.email;
-                            txtbPassword.Text = medico.password_hash;
-                            txtbFechaCreacion.Text = medico.fecha_creacion.ToString();
-                            txtbRol.Text = medico.rol_type.ToString();
+                            txtbEmail.Text = user.email;
+                            txtbPassword.Text = user.password_hash;
+                            txtbFechaCreacion.Text = user.fecha_creacion.ToString();
+                            txtbRol.Text = user.rol_type.ToString();
                             if (!string.IsNullOrEmpty(user.img_url) && System.IO.File.Exists(imagePath))
                             {
-                                ImagPerfil.ImageUrl = "~/Images/img_perfil/" + medico.img_url;
+                                ImagPerfil.ImageUrl = "~/Images/img_perfil/" + user.img_url;
                             }
                             txtbNombre.Text = medico.nombre;
                             txtbApellido.Text = medico.apellido;
