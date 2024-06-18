@@ -19,18 +19,12 @@ namespace Consultorio_Medico
 
         }
 
-        protected void dgv1_RowCommand(Object sender, GridViewCommandEventArgs e)
+        protected void btnEditar_Click(object sender, EventArgs e)
         {
-            if (e.CommandName == "Editar")
-            {
-                // Obtener el CommandArgument y separarlo en ID y Rol
-                string[] argumentos = e.CommandArgument.ToString().Split(';');
-                string id = argumentos[0];
-                string rol = argumentos[1];
+            Button btn = (Button)sender;
+            string id = btn.CommandArgument;
 
-                // Redirigir a la página de edición con los parámetros ID y Rol
-                Response.Redirect($"EditarUsuario.aspx?id={id}&rol={rol}");
-            }
+            Response.Redirect("EditarUsuario.aspx?id=" + id);
         }
     }
 }

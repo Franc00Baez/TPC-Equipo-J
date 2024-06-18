@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdmUsuarios.aspx.cs" Inherits="Consultorio_Medico.AdmUsuarios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdmUsuarios.aspx.cs" Inherits="Consultorio_Medico.AdmUsuarios" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
       <style>
         .table-container {
@@ -76,7 +76,7 @@
                 <asp:CheckBoxField DataField="activo" HeaderText="Estado" />
                  <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:Button ID="btnEditar" runat="server" Text="Editar" CssClass="btn-grid" CommandName="Edit" CommandArgument='<%# Eval("id") + ";" + Eval("rol_type") %>'  />
+                        <asp:Button ID="btnEditar" runat="server" Text="Editar" CssClass="btn-grid" CommandName="Edit" CommandArgument='<%# Eval("id") %>' OnClick="btnEditar_Click"  />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
