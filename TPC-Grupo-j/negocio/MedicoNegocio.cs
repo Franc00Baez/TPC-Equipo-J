@@ -145,6 +145,108 @@ namespace negocio
                 accesoDB.cerrarConexion();
             }
         }
+
+        public Medico buscarMedico(int usuario_id)
+        {
+            AccesoDB datos = new AccesoDB();
+            Medico medico = new Medico();
+
+            try
+            {
+                datos.setearQuery("select id, usuario_id, nombre, apellido, nacimiento from DOCTORES where usuario_id = @id");
+                datos.setearParametro("@id", usuario_id);
+
+                if(datos.Lector.Read())
+                {
+                    medico.id_medico = (int)datos.Lector["id"];
+                    medico.nombre = datos.Lector["nombre"].ToString();
+                    medico.apellido = datos.Lector["apellido"].ToString();
+                    medico.nacimiento = DateTime.Parse(datos.Lector["nacimiento"].ToString());
+
+                    return medico;
+                }
+
+                medico.id_medico = -1;
+                return medico;
+
+            }catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                medico.id_medico = -1;
+                return medico;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        
+        public List<Especialidad> getEspecialidadesPorMedico(int id_medico)
+        {
+            AccesoDB datos = new AccesoDB();
+            Especialidad especialidad = new Especialidad();
+            List<Especialidad> lista = new List<Especialidad>();
+
+            try
+            {
+                datos.setearQuerySP("sp_GetEspecialidadesPorDoctor");
+                datos.setearParametro("@id", id_medico);
+
+                while(datos.Lector.Read())
+                {
+                    especialidad.id = (int)datos.Lector["especialidad_id"];
+                    especialidad.nombre = datos.Lector["nombre_especialidad"].ToString();
+
+                    lista.Add(especialidad);
+                }
+
+                return lista;
+            }
+            catch(Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                return lista;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public Dictionary<string, Horario> getHorariosPorDoctor(int doctor_id)
+        {
+            AccesoDB datos = new AccesoDB();
+            var turnos = new Dictionary<string, Horario>();
+            Horario horario = new Horario();
+
+            try
+            {
+                datos.setearQuery("SELECT dia, hora_inicio, hora_final FROM TURNOS_DE_TRABAJO WHERE doctor_id = @DoctorId;");
+                datos.setearParametro("@DoctorId", doctor_id);
+
+                while(datos.Lector.Read())
+                {
+                    horario.Dia = datos.Lector["dia"].ToString();
+                    horario.HoraInicio = TimeSpan.Parse(datos.Lector["hora_inicio"].ToString());
+                    horario.HoraFinal = TimeSpan.Parse(datos.Lector["hora_final"].ToString());
+
+                    turnos[horario.Dia] = horario;
+                    
+                }
+
+                return turnos;
+
+            }catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
+                return turnos;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
+
 }
 

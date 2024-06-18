@@ -25,6 +25,7 @@ namespace dominio
             this.especialidades = new List<Especialidad>();
             this.Turnos = new Dictionary<string, Horario>();
         }
+        public int id_medico { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
         public DateTime nacimiento { get; set; }

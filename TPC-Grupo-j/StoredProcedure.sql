@@ -189,3 +189,18 @@ BEGIN
     -- Obtener el ID del médico recién insertado
     SET @MedicoID = SCOPE_IDENTITY();
 END;
+Go
+CREATE PROCEDURE sp_GetEspecialidadesPorDoctor
+    @id INT
+AS
+BEGIN
+    SELECT 
+        e.id AS especialidad_id,
+        e.especialidad_name AS nombre_especialidad
+    FROM 
+        ESPECIALIDADES e
+    INNER JOIN 
+        ESPECIALIDADES_X_DOCTORES ed ON e.id = ed.especialidad_id
+    WHERE 
+        ed.doctor_id = @id;
+END;

@@ -105,13 +105,22 @@ namespace Consultorio_Medico
         protected global::System.Web.UI.WebControls.TextBox txtbApellido;
 
         /// <summary>
-        /// Control nacimiento.
+        /// Control lblNacimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nacimiento;
+        protected global::System.Web.UI.WebControls.Label lblNacimiento;
+
+        /// <summary>
+        /// Control txtbNacimiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbNacimiento;
 
         /// <summary>
         /// Control lblEspecialidades.
