@@ -102,6 +102,7 @@
         <asp:Label ID="lblError" runat="server" CssClass="error-message" />
         <div style="text-align: center;">
             <asp:Button ID="btnCrear" runat="server" Text="Guardar" CssClass="btn-submit" OnClick="btnGuardar_Click"/>
+            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn-submit" OnClick="btnEliminar_Click"/>
             <a href="AdmMedicos.aspx" class="btn-back">Volver</a>
         </div>
     </div>

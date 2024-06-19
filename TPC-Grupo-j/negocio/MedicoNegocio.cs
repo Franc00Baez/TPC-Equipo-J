@@ -215,6 +215,36 @@ namespace negocio
             }
         }
 
+        public void eliminar(int id)
+        {
+            try
+            {
+                AccesoDB datos = new AccesoDB();
+                datos.setearQuery("delete FROM DOCTORES where id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public void eliminarEsp(int id)
+        {
+            try
+            {
+                AccesoDB datos = new AccesoDB();
+                datos.setearQuery("delete FROM ESPECIALIDADES_X_DOCTORES where doctor_id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         public Dictionary<string, Horario> getHorariosPorDoctor(int doctor_id)
         {
             AccesoDB datos = new AccesoDB();

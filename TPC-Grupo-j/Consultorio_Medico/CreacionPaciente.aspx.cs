@@ -36,6 +36,7 @@ namespace Consultorio_Medico
                                 txtTelefono.Text = seleccionado.telefono;
                                 txtNacimiento.Text = seleccionado.nacimiento.ToString("yyyy-MM-dd");
                                 txtDni.Text = seleccionado.dni;
+                                chbox.Checked = seleccionado.activo;
 
                                 btnCrear.Text = "Editar";
                             }
@@ -73,6 +74,7 @@ namespace Consultorio_Medico
                     return;
                 }
                 string dni = txtDni.Text;
+                bool estado = chbox.Checked;
 
                 Paciente nuevoPaciente = new Paciente
                 {
@@ -82,7 +84,7 @@ namespace Consultorio_Medico
                     telefono = telefono,
                     nacimiento = nacimiento,
                     dni = dni,
-                    activo = true
+                    activo = estado
                 };
 
                 if (Request.QueryString["id"] != null)

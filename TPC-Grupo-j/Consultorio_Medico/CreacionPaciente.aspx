@@ -107,6 +107,10 @@
             <label for="txtDni" class="form-label">DNI</label>
             <asp:TextBox ID="txtDni" runat="server" CssClass="form-control" />
         </div>
+        <div class="form-group">
+            <label for="chbox" class="form-label">Estado</label>
+        <asp:CheckBox ID="chbox" runat="server" Text="Activo" />
+        </div>
         <asp:Label ID="lblError" runat="server" CssClass="error-message" />
         <div style="text-align: center;">
             <asp:Button ID="btnCrear" runat="server" Text="Crear" OnClick="btnCrear_Click" CssClass="btn-submit"/>

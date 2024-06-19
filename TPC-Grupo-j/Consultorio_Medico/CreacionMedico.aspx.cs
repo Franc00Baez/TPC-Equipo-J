@@ -102,5 +102,49 @@ namespace Consultorio_Medico
                 lblError.Text = "Ocurrió un error inesperado: " + ex.Message;
             }
         }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Request.QueryString["id"] != null)
+                {
+                    int id;
+
+                    if (int.TryParse(Request.QueryString["id"], out id))
+                    {
+                        MedicoNegocio medicoNegocio = new MedicoNegocio();
+                        medicoNegocio.eliminar(id);
+                        medicoNegocio.eliminarEsp(id);
+
+
+                        List<Medico> temporales = Session["listaMedicos"] as List<Medico>;
+                        if (temporales != null)
+                        {
+                            Medico medicoAEliminar = temporales.Find(x => x.id_medico == id);
+                            if (medicoAEliminar != null)
+                            {
+                                temporales.Remove(medicoAEliminar);
+                                Session["listaMedicos"] = temporales;
+                            }
+                        }
+
+                        Response.Redirect("AdmMedicos.aspx");
+                    }
+                    else
+                    {
+                        lblError.Text = "ID de médico no válido.";
+                    }
+                }
+                else
+                {
+                    lblError.Text = "No se proporcionó un ID de médico.";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "Ocurrió un error inesperado: " + ex.Message;
+            }
+        }
     }
 }
