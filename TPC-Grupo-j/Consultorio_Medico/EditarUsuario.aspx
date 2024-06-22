@@ -121,9 +121,9 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <div class="text-center">
-            <asp:Button ID="saveButton" runat="server" CssClass="btn-create" Text="Guardar" />
-            <asp:Button ID="backButton" runat="server" CssClass="btn-create" Text="Volver" />
-            <asp:Button ID="deactivateButton" runat="server" CssClass="btn-create" Text="Desactivar" />
+            <asp:Button ID="saveButton" runat="server" CssClass="btn-create" Text="Guardar" OnClick="saveButton_Click" />
+            <asp:Button ID="backButton" runat="server" CssClass="btn-create" Text="Volver" Onclick="backButton_Click"/>
+            <asp:Button ID="deactivateButton" runat="server" CssClass="btn-create" Text="Ban" Onclick="deactivateButton_Click"/>
         </div>
     </div>
 

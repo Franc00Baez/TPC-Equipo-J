@@ -209,5 +209,37 @@ namespace Consultorio_Medico
                 }
             }
         }
+
+        protected void saveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void backButton_Click(object sender, EventArgs e)
+        {
+            Session.Remove("user");
+            Session.Remove("medico");
+            Response.Redirect("AdmUsuarios.aspx", false);
+        }
+
+        protected void deactivateButton_Click(object sender, EventArgs e)
+        {
+            user = Session["user"] != null ? (Usuario)Session["user"] : null;
+
+            if(user.activo)
+            {
+                user.activo = false;
+                negocio_usuario.actualizar(user);
+                deactivateButton.Text = "Unban";
+                Session["user"] = user;
+
+            }else
+            {
+                user.activo = false;
+                negocio_usuario.actualizar(user);
+                deactivateButton.Text = "Ban";
+                Session["user"] = user;
+            }
+        }
     }
 }

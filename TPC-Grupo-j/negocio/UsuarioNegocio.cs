@@ -85,9 +85,11 @@ namespace negocio
                 AccesoDB datos = new AccesoDB();
             try
             {
-                datos.setearQuery("Update USUARIOS set img_url = @imagen WHERE id = @id");
-                datos.setearParametro("@imagen", usuario.img_url);
-                datos.setearParametro("@id", usuario.id);
+                datos.setearQuery("UPDATE USUARIOS SET password_hash = @PasswordHash, img_url = @ImgUrl, activo = @Activo WHERE id = @Id;");
+                datos.setearParametro("@passwordHash", usuario.password_hash);
+                datos.setearParametro("@ImgUrl", usuario.img_url);
+                datos.setearParametro("@Activo", usuario.activo);
+                datos.setearParametro("@Id", usuario.id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
