@@ -67,5 +67,39 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public Especialidad ObtenerEspecialidadPorId(int especialidadId)
+        {
+            AccesoDB datos = new AccesoDB();
+            Especialidad especialidad = new Especialidad();
+
+            try
+            {
+                datos.setearQuery("select id, especialidad_name FROM ESPECIALIDADES WHERE id = @id");
+                datos.setearParametro("@id", especialidadId);
+
+                datos.ejectuarLectura();
+
+                if(datos.Lector.Read())
+                {
+                    especialidad.id = (int)datos.Lector["id"];
+                    especialidad.nombre = datos.Lector["especialidad_name"].ToString();
+
+                    return especialidad;
+                }
+
+                return especialidad;
+
+            }
+            catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, System.Web.HttpContext.Current);
+                return especialidad;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
