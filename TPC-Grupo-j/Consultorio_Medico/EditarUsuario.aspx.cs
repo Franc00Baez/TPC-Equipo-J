@@ -212,7 +212,20 @@ namespace Consultorio_Medico
 
         protected void saveButton_Click(object sender, EventArgs e)
         {
+            if(Session["user"] != null)
+            {
+                user = (Usuario)Session["user"];
 
+                switch(user.rol_type)
+                {
+                    case UserRole.Admin:
+                        break;
+                    case UserRole.Recepcionista:
+                        break;
+                    case UserRole.Especialista:
+                        break;
+                }
+            }
         }
 
         protected void backButton_Click(object sender, EventArgs e)
@@ -239,6 +252,34 @@ namespace Consultorio_Medico
                 negocio_usuario.actualizar(user);
                 deactivateButton.Text = "Ban";
                 Session["user"] = user;
+            }
+        }
+
+        private void SaveAdmin()
+        {
+            HashService service = new HashService();
+            user = (Usuario)Session["user"];
+            try
+            {
+                if(string.Compare(user.password_hash, txtbPassword.Text) != 0 && txtbPassword.Text != "")
+                {
+                    user.password_hash = service.HashPassword(txtbPassword.Text);
+                }
+                if(profileImageUpload.HasFile)
+                {
+                    string ruta = Server.MapPath("~/Images/img_perfil/");
+                    string fileName = "imgPerfil-" + user.id + ".jpg";
+                    string filePath = Path.Combine(ruta, fileName);
+
+                    profileImageUpload.SaveAs(filePath);
+
+                    user.img_url = fileName;
+                }
+
+               
+            }catch (Exception ex)
+            {
+
             }
         }
     }
