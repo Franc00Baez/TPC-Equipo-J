@@ -96,7 +96,7 @@ namespace Consultorio_Medico
                         recepcionista.nacimiento = DateTime.Parse(txtbNacimiento.Text);
                         System.Diagnostics.Debug.WriteLine("IMG: " + recepcionista.img_url);
 
-                        recepcionistaNegocio.actualizar(recepcionista);
+                        recepcionistaNegocio.actualizarRecepcionistaYUsuario(recepcionista);
                         break;
                     case UserRole.Null:
                         Response.Redirect("Login.aspx");

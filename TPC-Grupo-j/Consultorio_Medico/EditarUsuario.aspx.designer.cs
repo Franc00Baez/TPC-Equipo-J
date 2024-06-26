@@ -186,6 +186,42 @@ namespace Consultorio_Medico
         protected global::System.Web.UI.WebControls.GridView gvTurnos;
 
         /// <summary>
+        /// Control ddlNuevoDia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNuevoDia;
+
+        /// <summary>
+        /// Control txtNuevoHoraInicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNuevoHoraInicio;
+
+        /// <summary>
+        /// Control txtNuevoHoraFin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNuevoHoraFin;
+
+        /// <summary>
+        /// Control btnAgregarTurno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarTurno;
+
+        /// <summary>
         /// Control saveButton.
         /// </summary>
         /// <remarks>

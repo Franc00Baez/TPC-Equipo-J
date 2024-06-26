@@ -19,12 +19,14 @@ namespace Consultorio_Medico
         private Medico medico { get; set; }
         private Recepcionista recepcionista { get; set; }
         private string imgPath { get; set; }
+
+        private static readonly List<string> diasDeLaSemana = new List<string> { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" };
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
             {
-                if(Request.QueryString["id"] != null)
+                if (Request.QueryString["id"] != null)
                 {
                     int id = int.Parse(Request.QueryString["id"].ToString());
                     user = negocio_usuario.BuscarUsuarioPorId(id);
@@ -42,7 +44,7 @@ namespace Consultorio_Medico
                             break;
                         case UserRole.Especialista:
                             CargarMedico(user);
-    
+
                             break;
                     }
 
@@ -50,7 +52,7 @@ namespace Consultorio_Medico
             }
             else
             {
-                if(Session["user"] != null)
+                if (Session["user"] != null)
                 {
                     user = (Usuario)Session["user"];
 
@@ -113,7 +115,7 @@ namespace Consultorio_Medico
                 medico.especialidades = negocio_medico.getEspecialidadesPorMedico(medico.id_medico);
                 medico.Turnos = negocio_medico.getHorariosPorDoctor(medico.id_medico);
                 Session.Add("medico", medico);
-            } 
+            }
 
             txtbEmail.Text = user.email;
             txtbPassword.Text = user.password_hash;
@@ -130,6 +132,7 @@ namespace Consultorio_Medico
             rptEspecialidades.DataBind();
             BindTurnosGrid();
             CargarEspecialidades();
+            CargarDiasDisponibles();
         }
 
         protected void gvTurnos_RowEditing(object sender, GridViewEditEventArgs e)
@@ -153,6 +156,7 @@ namespace Consultorio_Medico
                 {
                     medico.Turnos[dia].HoraInicio = horaInicio;
                     medico.Turnos[dia].HoraFinal = horaFinal;
+                    negocio_medico.ActualizarTurno(medico.Turnos[dia], medico.id_medico);
                 }
             }
             Session["medico"] = medico;
@@ -178,6 +182,7 @@ namespace Consultorio_Medico
                 if (!medico.especialidades.Any(me => me.id == especialidadId))
                 {
                     medico.especialidades.Add(especialidad);
+                    negocio_medico.AgregarEspecialidad(especialidad, medico.id_medico);
                     Session["medico"] = medico;
                     rptEspecialidades.DataSource = medico.especialidades;
                     rptEspecialidades.DataBind();
@@ -200,6 +205,8 @@ namespace Consultorio_Medico
                     // Eliminar la especialidad del médico
                     medico.especialidades.Remove(especialidad);
 
+                    // Actualizamos en la DB
+                    negocio_medico.BorrarEspecialidad(especialidad, medico.id_medico);
 
                     // Actualizar la sesión y los controles en la página
                     Session["medico"] = medico;
@@ -212,19 +219,25 @@ namespace Consultorio_Medico
 
         protected void saveButton_Click(object sender, EventArgs e)
         {
-            if(Session["user"] != null)
+            if (Session["user"] != null)
             {
                 user = (Usuario)Session["user"];
 
-                switch(user.rol_type)
+                switch (user.rol_type)
                 {
                     case UserRole.Admin:
+                        SaveAdmin();
                         break;
                     case UserRole.Recepcionista:
+                        SaveRecepcionista();
                         break;
                     case UserRole.Especialista:
+                        SaveEspecialista();
                         break;
                 }
+                Session.Remove("user");
+                Session.Remove("medico");
+                Response.Redirect("AdmUsuarios.aspx", false);
             }
         }
 
@@ -239,16 +252,17 @@ namespace Consultorio_Medico
         {
             user = Session["user"] != null ? (Usuario)Session["user"] : null;
 
-            if(user.activo)
+            if (user.activo)
             {
                 user.activo = false;
                 negocio_usuario.actualizar(user);
                 deactivateButton.Text = "Unban";
                 Session["user"] = user;
 
-            }else
+            }
+            else
             {
-                user.activo = false;
+                user.activo = true;
                 negocio_usuario.actualizar(user);
                 deactivateButton.Text = "Ban";
                 Session["user"] = user;
@@ -261,26 +275,95 @@ namespace Consultorio_Medico
             user = (Usuario)Session["user"];
             try
             {
-                if(string.Compare(user.password_hash, txtbPassword.Text) != 0 && txtbPassword.Text != "")
+                if (string.Compare(user.password_hash, txtbPassword.Text) != 0 && txtbPassword.Text != "")
                 {
                     user.password_hash = service.HashPassword(txtbPassword.Text);
                 }
-                if(profileImageUpload.HasFile)
+                if (profileImageUpload.HasFile)
                 {
                     string ruta = Server.MapPath("~/Images/img_perfil/");
                     string fileName = "imgPerfil-" + user.id + ".jpg";
-                    string filePath = Path.Combine(ruta, fileName);
+                    string filePath = System.IO.Path.Combine(ruta, fileName);
 
                     profileImageUpload.SaveAs(filePath);
 
                     user.img_url = fileName;
                 }
-
-               
-            }catch (Exception ex)
-            {
+                negocio_usuario.actualizar(user);
 
             }
+            catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
+            }
+        }
+
+        private void SaveRecepcionista()
+        {
+            recepcionista = new Recepcionista((Usuario)Session["user"]);
+            SaveAdmin();
+            recepcionista.nombre = txtbNombre.Text;
+            recepcionista.apellido = txtbApellido.Text;
+            recepcionista.nacimiento = DateTime.Parse(txtbNacimiento.Text);
+
+            negocio_recepcionista.actualizar(recepcionista);
+
+        }
+
+        private void SaveEspecialista()
+        {
+            int id = int.Parse(Request.QueryString["id"].ToString());
+            medico = (Medico)Session["medico"];
+            SaveAdmin();
+            medico.id = id;
+            medico.nombre = txtbNombre.Text;
+            medico.apellido = txtbApellido.Text;
+            medico.nacimiento = DateTime.Parse(txtbNacimiento.Text);
+            negocio_medico.actualizar(medico);
+
+        }
+
+        private void CargarDiasDisponibles()
+        {
+            medico = (Medico)Session["medico"];
+            List<string> diasOcupados = medico.Turnos.Keys.ToList();
+            List<string> diasDisponibles = diasDeLaSemana.Except(diasOcupados).ToList();
+
+            ddlNuevoDia.DataSource = diasDisponibles;
+            ddlNuevoDia.DataBind();
+        }
+
+        protected void btnAgregarTurno_Click(object sender, EventArgs e)
+        {
+            string nuevoDia = ddlNuevoDia.SelectedValue;
+            TimeSpan nuevoHoraInicio, nuevoHoraFinal;
+
+            if (TimeSpan.TryParse(txtNuevoHoraInicio.Text, out nuevoHoraInicio) && TimeSpan.TryParse(txtNuevoHoraFin.Text, out nuevoHoraFinal))
+            {
+                medico = (Medico)Session["medico"];
+
+                if (!medico.Turnos.ContainsKey(nuevoDia))
+                {
+                    Horario nuevoHorario = new Horario
+                    {
+                        Dia = nuevoDia,
+                        HoraInicio = nuevoHoraInicio,
+                        HoraFinal = nuevoHoraFinal
+                    };
+
+                    medico.Turnos.Add(nuevoDia, nuevoHorario);
+                    negocio_medico.CargarNuevoTurno(nuevoHorario, medico.id_medico);
+                    Session["medico"] = medico;
+
+                    ddlNuevoDia.Items.Remove(ddlNuevoDia.SelectedItem);
+                    txtNuevoHoraInicio.Text = string.Empty;
+                    txtNuevoHoraFin.Text = string.Empty;
+          
+                    BindTurnosGrid();
+                    CargarDiasDisponibles(); 
+                }
+            }
+
         }
     }
 }

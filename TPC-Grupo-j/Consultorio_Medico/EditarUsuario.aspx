@@ -71,59 +71,75 @@
         <%} %>
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
-        <%if (user.rol_type == helpers.UserRole.Especialista)
-            {%>
-        <div class="container mt-5">
-            <asp:Label Text="Especialidades" ID="lblEspecialidades" runat="server" />
-            <asp:Repeater ID="rptEspecialidades" runat="server" OnItemCommand="rptEspecialidades_ItemCommand">
-                <ItemTemplate>
-                    <div class="mb-3">
-                        <asp:Label ID="lblEspecialidad" runat="server" Text='<%#Eval("nombre") %>'></asp:Label>
-                        <asp:Button ID="btnEliminar" runat="server" CssClass="btn btn-danger btn-sm ms-2" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' />
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
+                <%if (user.rol_type == helpers.UserRole.Especialista)
+                    {%>
+                <div class="container mt-5">
+                    <asp:Label Text="Especialidades" ID="lblEspecialidades" runat="server" />
+                    <asp:Repeater ID="rptEspecialidades" runat="server" OnItemCommand="rptEspecialidades_ItemCommand">
+                        <ItemTemplate>
+                            <div class="mb-3">
+                                <asp:Label ID="lblEspecialidad" runat="server" Text='<%#Eval("nombre") %>'></asp:Label>
+                                <asp:Button ID="btnEliminar" runat="server" CssClass="btn btn-danger btn-sm ms-2" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' />
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
 
-            <div class="mt-3">
-                <asp:Label Text="Agregar Especialidades" ID="lblAgregarEsp" runat="server" />
-                <div class="input-group mb-3">
-                    <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="form-select"></asp:DropDownList>
-                    <asp:Button ID="btnAgregar" runat="server" CssClass="btn btn-success ms-2" Text="Agregar" OnClick="btnAgregar_Click" />
+                    <div class="mt-3">
+                        <asp:Label Text="Agregar Especialidades" ID="lblAgregarEsp" runat="server" />
+                        <div class="input-group mb-3">
+                            <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="form-select"></asp:DropDownList>
+                            <asp:Button ID="btnAgregar" runat="server" CssClass="btn btn-success ms-2" Text="Agregar" OnClick="btnAgregar_Click" />
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="container mt-5">
-            <h2>Turnos</h2>
-            <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" DataKeyNames="Dia" OnRowEditing="gvTurnos_RowEditing" OnRowUpdating="gvTurnos_RowUpdating" OnRowCancelingEdit="gvTurnos_RowCancelingEdit">
-                <Columns>
-                    <asp:BoundField DataField="Dia" HeaderText="Día" SortExpression="Dia" ReadOnly="True" />
-                    <asp:TemplateField HeaderText="Hora Inicio">
-                        <EditItemTemplate>
-                            <asp:TextBox ID="txtHoraInicio" runat="server" Text='<%# Bind("HoraInicio") %>' />
-                        </EditItemTemplate>
-                        <ItemTemplate>
-                            <asp:Label ID="lblHoraInicio" runat="server" Text='<%# Bind("HoraInicio") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Hora Fin">
-                        <EditItemTemplate>
-                            <asp:TextBox ID="txtHoraFin" runat="server" Text='<%# Bind("HoraFinal") %>' />
-                        </EditItemTemplate>
-                        <ItemTemplate>
-                            <asp:Label ID="lblHoraFin" runat="server" Text='<%# Bind("HoraFinal") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:CommandField ShowEditButton="True" />
-                </Columns>
-            </asp:GridView>
-        </div>
-        <%} %>
+                <div class="container mt-5">
+                    <h2>Turnos</h2>
+                    <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" DataKeyNames="Dia" OnRowEditing="gvTurnos_RowEditing" OnRowUpdating="gvTurnos_RowUpdating" OnRowCancelingEdit="gvTurnos_RowCancelingEdit">
+                        <Columns>
+                            <asp:BoundField DataField="Dia" HeaderText="Día" SortExpression="Dia" ReadOnly="True" />
+                            <asp:TemplateField HeaderText="Hora Inicio">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtHoraInicio" runat="server" Text='<%# Bind("HoraInicio") %>' />
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblHoraInicio" runat="server" Text='<%# Bind("HoraInicio") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Hora Fin">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtHoraFin" runat="server" Text='<%# Bind("HoraFinal") %>' />
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblHoraFin" runat="server" Text='<%# Bind("HoraFinal") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:CommandField ShowEditButton="True" />
+                        </Columns>
+                    </asp:GridView>
+                    <div class="mt-4">
+                        <h3>Agregar Nuevo Turno</h3>
+                        <div class="form-group">
+                            <label for="ddlNuevoDia">Día:</label>
+                            <asp:DropDownList ID="ddlNuevoDia" runat="server" CssClass="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="txtbNuevoHoraInicio">Hora Inicio:</label>
+                            <asp:TextBox ID="txtNuevoHoraInicio" runat="server" CssClass="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="txtbNuevoHoraFin">Hora Fin:</label>
+                            <asp:TextBox ID="txtNuevoHoraFin" runat="server" CssClass="form-control" />
+                        </div>
+                        <asp:Button ID="btnAgregarTurno" runat="server" CssClass="btn btn-success mt-3" Text="Agregar Turno" OnClick="btnAgregarTurno_Click" />
+                    </div>
+                </div>
+                <%} %>
             </ContentTemplate>
         </asp:UpdatePanel>
         <div class="text-center">
             <asp:Button ID="saveButton" runat="server" CssClass="btn-create" Text="Guardar" OnClick="saveButton_Click" />
-            <asp:Button ID="backButton" runat="server" CssClass="btn-create" Text="Volver" Onclick="backButton_Click"/>
-            <asp:Button ID="deactivateButton" runat="server" CssClass="btn-create" Text="Ban" Onclick="deactivateButton_Click"/>
+            <asp:Button ID="backButton" runat="server" CssClass="btn-create" Text="Volver" OnClick="backButton_Click" />
+            <asp:Button ID="deactivateButton" runat="server" CssClass="btn-create" Text="Ban" OnClick="deactivateButton_Click" />
         </div>
     </div>
 

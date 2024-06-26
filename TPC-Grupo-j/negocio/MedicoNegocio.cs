@@ -127,7 +127,7 @@ namespace negocio
             AccesoDB accesoDB = new AccesoDB();
             try
             {
-                accesoDB.setearQuery("UPDATE DOCTORES SET nombre = @nombre, apellido = @apellido,nacimiento = @nacimiento WHERE id = @id;");
+                accesoDB.setearQuery("UPDATE DOCTORES SET nombre = @nombre, apellido = @apellido, nacimiento = @nacimiento WHERE usuario_id = @id;");
                 accesoDB.setearParametro("@nombre", actualizado.nombre);
                 accesoDB.setearParametro("@apellido", actualizado.apellido);
                 accesoDB.setearParametro("@nacimiento", actualizado.nacimiento);
@@ -272,6 +272,99 @@ namespace negocio
             {
                 Seguridad.ManejarExcepcion(ex, HttpContext.Current);
                 return turnos;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void ActualizarTurno(Horario turno, int id_medico)
+        {
+            AccesoDB datos = new AccesoDB();
+
+            try
+            {
+                datos.setearQuery("UPDATE TURNOS_DE_TRABAJO SET hora_inicio = @hora_inicio, hora_final = @hora_final WHERE doctor_id = @id AND dia = @dia;");
+                datos.setearParametro("@id", id_medico);
+                datos.setearParametro("@dia", turno.Dia);
+                datos.setearParametro("@hora_inicio", turno.HoraInicio);
+                datos.setearParametro("@hora_final", turno.HoraFinal);
+                datos.ejecutarAccion();
+
+            }catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void BorrarEspecialidad(Especialidad especialidad, int id_medico)
+        {
+            AccesoDB datos = new AccesoDB();
+
+            try
+            {
+                datos.setearQuery("DELETE FROM ESPECIALIDADES_X_DOCTORES WHERE doctor_id = @doctor_id AND especialidad_id = @especialidad_id;");
+                datos.setearParametro("@doctor_id", id_medico);
+                datos.setearParametro("@especialidad_id", especialidad.id);
+
+                datos.ejecutarAccion();
+
+            }catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void AgregarEspecialidad(Especialidad especialidad, int id_medico)
+        {
+            AccesoDB datos = new AccesoDB();
+
+            try
+            {
+                datos.setearQuery("INSERT INTO ESPECIALIDADES_X_DOCTORES (doctor_id, especialidad_id) VALUES (@doctor_id, @especialidad_id);");
+                datos.setearParametro("@doctor_id", id_medico);
+                datos.setearParametro("@especialidad_id", especialidad.id);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void CargarNuevoTurno(Horario turno, int id_medico)
+        {
+            AccesoDB datos = new AccesoDB();
+
+            try
+            {
+                datos.setearQuery("INSERT INTO TURNOS_DE_TRABAJO (doctor_id, dia, hora_inicio, hora_final) VALUES (@doctor_id, @dia, @hora_inicio, @hora_final);");
+                datos.setearParametro("@doctor_id", id_medico);
+                datos.setearParametro("@dia", turno.Dia);
+                datos.setearParametro("@hora_inicio", turno.HoraInicio);
+                datos.setearParametro("@hora_final", turno.HoraFinal);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
             }
             finally
             {

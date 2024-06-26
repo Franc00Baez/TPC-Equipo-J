@@ -15,6 +15,28 @@ namespace negocio
             AccesoDB datos = new AccesoDB();
             try
             {
+                datos.setearQuery("UPDATE RECEPCIONISTAS SET nombre = @nombre, apellido = @apellido, nacimiento = @nacimiento WHERE usuario_id = @id");
+                datos.setearParametro("@nombre", recepcionista.nombre);
+                datos.setearParametro("@apellido", recepcionista.apellido);
+                datos.setearParametro("@nacimiento", recepcionista.nacimiento);
+                datos.setearParametro("@id", recepcionista.id);
+
+                datos.ejecutarAccion();
+
+            }catch (Exception ex)
+            {
+                Seguridad.ManejarExcepcion(ex, HttpContext.Current);
+
+            }finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void actualizarRecepcionistaYUsuario(Recepcionista recepcionista)
+        {
+            AccesoDB datos = new AccesoDB();
+            try
+            {
                 datos.setearQuerySP("sp_ActualizarUsuarioYRecepcionista");
                 datos.setearParametro("@id", recepcionista.id);
                 datos.setearParametro("@email", recepcionista.email);
