@@ -87,10 +87,7 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="Default.aspx">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="Especialidades.aspx">Especialidades</a>
-                        </li>
+                        </li>                       
                         <%if (Session["Rol"] != null && (int)Session["Rol"] == 1){ %>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="AdmUsuarios.aspx" id="nav-admUsu">Administrar usuarios</a>
@@ -98,7 +95,7 @@
                         <%}%>
                         <%if (Session["Rol"] != null && (int)Session["Rol"] == 2){ %>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#" id="nav-Turnos">Administrar turnos</a>
+                            <a class="nav-link" aria-current="page" href="AdmTurnos.aspx" id="nav-Turnos">Administrar turnos</a>
                         </li>
                         <%}%>
                         <%if (Session["Rol"] != null && (int)Session["Rol"] == 2){ %>

@@ -20,12 +20,14 @@ namespace Consultorio_Medico
                 if (!IsPostBack)
                 {
                     Session.Add("editable", false);
+                    fileupd.Visible = false;
 
                     if (Seguridad.ValidarUsuario(Session["usuario"]))
                     {
                         Usuario user = (Usuario)Session["usuario"];
                         string imagePath = Server.MapPath("~/Images/img_perfil/" + user.img_url);
                         RecNegocio negocio_rec = new RecNegocio();
+
                         switch ((int)Session["Rol"])
                         {
                             case 1:
@@ -126,23 +128,26 @@ namespace Consultorio_Medico
 
         protected void btnEditar_Click(object sender, EventArgs e)
         {
+ 
             if ((int)Session["Rol"] == 1)
             {
-                // Mensaje de depuración para verificar si la condición se cumple
+
                 System.Diagnostics.Debug.WriteLine("El rol es 1, se permite la edición.");
                 System.Diagnostics.Debug.WriteLine("Valor de on_edit pri: " + Session["editable"].ToString());
 
-
                 if ((bool)Session["editable"] == false)
                 {
+                    fileupd.Visible = true;
+                    fileupd.Enabled = true;
                     btnEditar.Text = "Cancelar";
                     btnGuardar.Visible = true;
                     Session["editable"] = true;
                     System.Diagnostics.Debug.WriteLine("Valor de on_edit dentro de if: " + Session["editable"].ToString());
-                    
+
                 }
                 else
                 {
+                    fileupd.Visible = false;
                     btnGuardar.Visible = false;
                     btnEditar.Text = "Editar Perfil";
                     Session["editable"] = false;
@@ -152,8 +157,10 @@ namespace Consultorio_Medico
             }
             else
             {
+
                 if ((bool)Session["editable"] == false)
                 {
+                    fileupd.Visible = true;
                     txtbNombre.Enabled = true;
                     txtbApellido.Enabled = true;
                     txtbNacimiento.Enabled = true;
@@ -165,12 +172,12 @@ namespace Consultorio_Medico
                 }
                 else
                 {
+                    fileupd.Visible = false;
                     txtbNombre.Enabled = false;
                     txtbApellido.Enabled = false;
                     txtbNacimiento.Enabled = false;
                     btnGuardar.Visible = false;
                     btnEditar.Text = "Editar Perfil";
-                    fileupd.Enabled = false;
                     Session["editable"] = false;
                     System.Diagnostics.Debug.WriteLine("Valor de on_edit: " + Session["editable"].ToString());
                 }

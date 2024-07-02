@@ -52,3 +52,12 @@ C:\Users\Lucio\OneDrive\Escritorio\TPCR\TPC-Equipo-J\TPC-Grupo-j\dominio\obj\Deb
 C:\Users\Lucio\OneDrive\Escritorio\TPCR\TPC-Equipo-J\TPC-Grupo-j\dominio\obj\Debug\dominio.csproj.CopyComplete
 C:\Users\Lucio\OneDrive\Escritorio\TPCR\TPC-Equipo-J\TPC-Grupo-j\dominio\obj\Debug\dominio.dll
 C:\Users\Lucio\OneDrive\Escritorio\TPCR\TPC-Equipo-J\TPC-Grupo-j\dominio\obj\Debug\dominio.pdb
+C:\Users\Lucio\OneDrive\Escritorio\TPC NUEVO\TPC-Equipo-J\TPC-Grupo-j\dominio\bin\Debug\dominio.dll
+C:\Users\Lucio\OneDrive\Escritorio\TPC NUEVO\TPC-Equipo-J\TPC-Grupo-j\dominio\bin\Debug\dominio.pdb
+C:\Users\Lucio\OneDrive\Escritorio\TPC NUEVO\TPC-Equipo-J\TPC-Grupo-j\dominio\bin\Debug\app.helpers.dll
+C:\Users\Lucio\OneDrive\Escritorio\TPC NUEVO\TPC-Equipo-J\TPC-Grupo-j\dominio\bin\Debug\app.helpers.pdb
+C:\Users\Lucio\OneDrive\Escritorio\TPC NUEVO\TPC-Equipo-J\TPC-Grupo-j\dominio\obj\Debug\dominio.csproj.AssemblyReference.cache
+C:\Users\Lucio\OneDrive\Escritorio\TPC NUEVO\TPC-Equipo-J\TPC-Grupo-j\dominio\obj\Debug\dominio.csproj.CoreCompileInputs.cache
+C:\Users\Lucio\OneDrive\Escritorio\TPC NUEVO\TPC-Equipo-J\TPC-Grupo-j\dominio\obj\Debug\dominio.csproj.CopyComplete
+C:\Users\Lucio\OneDrive\Escritorio\TPC NUEVO\TPC-Equipo-J\TPC-Grupo-j\dominio\obj\Debug\dominio.dll
+C:\Users\Lucio\OneDrive\Escritorio\TPC NUEVO\TPC-Equipo-J\TPC-Grupo-j\dominio\obj\Debug\dominio.pdb
